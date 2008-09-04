@@ -1,0 +1,20 @@
+======================= README for RubyES-186 =========================
+
+RubyES stands for RubyEnterpriseServer and is pronounced "Roo - Bees".
+
+=======================================================================
+
+Step #1 - Run the "install.sh" script as a regular (non root) user
+
+Step #2 - Source the Ruby Environment file ( . ./rubyEnv.sh )
+
+Step #3 - Enjoy the Power of Roooo-Beeeeees!!
+
+----- open source components -----
+
+gem install merb
+gem install passenger
+passenger-install-apache2-module
+git clone git://github.com/drogus/apache-upload-progress-module.git
+cd apache-upload-progress-module/
+/usr/sbin/apxs -c -i -a mod_upload_progress.c
