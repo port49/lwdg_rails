@@ -3,3 +3,5 @@
 
 9/4:
 [ 8:00, 11:00 ]am MERB file upload
+[ 12:00, 3:00 ]pm server setup
+[ 5:30, 3:00 ]pm rails app
