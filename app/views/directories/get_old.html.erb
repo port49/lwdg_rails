@@ -1,0 +1,126 @@
+
+        <div class="actionLinks">
+            
+    <a href="/folder/new/1">Create folder</a><br />
+   
+
+
+<h1>
+	Show List
+</h1>
+<p>
+		
+	<h3 class="root_links">
+	 
+	
+	    
+	                <a href="/folder/rename/2" title="Rename this folder"><img alt="Edit" src="/images/edit.png?1186082191" /></a>
+	    
+	    
+	                <a href="/folder/destroy/2" onclick="return confirm('All files and subfolders will be deleted!\nAre you sure?');" title="Delete this folder"><img alt="Delete" src="/images/delete.png?1186082191" /></a>
+
+	    
+
+	       
+
+	
+	
+	
+	
+	
+	
+	
+	
+<img alt="Folder" src="/images/folder.png?1186082192" />	<a href="/folder/list/2">blah</a>
+
+	</h3>
+  
+</p>
+
+
+
+
+
+
+
+        </div>
+
+        <div class="content">
+            <table cellspacing="0" cellpadding="0">
+                <tr>
+                    <td>
+                        
+
+
+
+
+<p class="title">
+    Home folder
+	
+	    <a href="#" onclick="ShowProperties();" class="small" id="rights_link">permissions</a>
+	    <a href="#" onclick="ShowList();" class="small" id="list_link" style="display:none;">back to folder</a>
+
+	
+</p>
+
+<div id="list" style="position:relative;"><div>
+
+
+
+    <table class="grid">
+        <tr>
+            <th></th>
+            <th width="239"><a href="/folder/list?order_by=name">Name</a></th>
+            <th width="82"><a href="/folder/list?order_by=filesize">Size</a></th>
+
+            <th><a href="/folder/list?order_by=date_modified">Date Modified</a></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+
+
+
+    </table>
+</div></div>
+
+
+
+<div id="folder_rights" style="display:none;position:relative;"><div>
+    <form action="/folder/update_permissions" method="post">
+        <table>
+            <tr>
+                <th></th>
+                <th></th>
+                <th class="rights">Create</th>
+
+                <th class="rights">Read</th>
+                <th class="rights">Update</th>
+                <th class="rights">Delete</th>
+            </tr>
+    
+            <tr class="even">
+        
+        
+                <td><img alt="Group_grey" src="/images/group_grey.png?1186082192" /></td>
+                <td style="color:#818181;">admins</td>
+
+        
+                <td class="rights"><input checked="checked" disabled="disabled" id="create_check_box_1" name="create_check_box[1]" onclick="CheckRead(this.checked, 1)" type="checkbox" value="1" /><input name="create_check_box[1]" type="hidden" value="0" /></td>
+                <td class="rights"><input checked="checked" disabled="disabled" id="read_check_box_1" name="read_check_box[1]" onclick="UncheckCreateUpdateDelete(this.checked, 1)" type="checkbox" value="1" /><input name="read_check_box[1]" type="hidden" value="0" /></td>
+                <td class="rights"><input checked="checked" disabled="disabled" id="update_check_box_1" name="update_check_box[1]" onclick="CheckRead(this.checked, 1)" type="checkbox" value="1" /><input name="update_check_box[1]" type="hidden" value="0" /></td>
+                <td class="rights"><input checked="checked" disabled="disabled" id="delete_check_box_1" name="delete_check_box[1]" onclick="CheckRead(this.checked, 1)" type="checkbox" value="1" /><input name="delete_check_box[1]" type="hidden" value="0" /></td>
+            </tr>
+    
+        </table>
+        <br>
+        <input name="commit" type="submit" value="Save" /> <input id="update_recursively_checked" name="update_recursively[checked]" type="checkbox" value="yes" /><input name="update_recursively[checked]" type="hidden" value="no" /> Apply changes to subfolders
+    </form>
+
+</div></div>
+
+                    </td>
+                </tr>
+            </table>
+        </div>
+

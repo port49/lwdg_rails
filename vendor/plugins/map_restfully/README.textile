@@ -1,0 +1,90 @@
+h1. SUMMARY
+
+The map_restfully plugin creates a more RESTful controller than the default in Rails.  This facilitates applications that are much closer to the architectural style REST, which leads to performance and convention advantages.
+
+h1. INSTALLATION
+
+<pre>
+<code>
+#> ruby script/plugin install git://github.com/progmatica/map_restfully.git
+</code>
+</pre>
+
+h1. USAGE
+
+The libs will be picked up automatically when Rails loads.
+
+h1. EXAMPLE
+
+In your routes.rb file, simply add:
+<pre>
+<code>
+  map.restfully :nap
+</code>
+</pre>
+where ':nap' is the name of your resource.
+
+You can then create a naps_controller that inherits from restful_controller:
+<pre>
+<code>
+class NapsController < RestfulController
+end
+</code>
+</pre>
+
+This will automatically provide actions for GETS, POSTS, PUTS, DELETES, GET, POST, PUT, DELETE.  The grammatical number corresponds to the url generated and the path helpers.
+
+Using the above example, we have the following:
+
+|_.convenience helper |_.example paths  |_. controller method |_. prepopulated instance variable |
+| nap_path( @nap ), get_nap_path( @nap ) | nap, nap.html, nap/1, nap/1.html | NapsController#get | @nap |
+| nap_path( @nap, :method => :post ), post_nap_path( @nap ) | nap, nap.html, nap/1, nap/1.html | NapsController#post | @nap |
+| nap_path( @nap, :method => :put ), put_nap_path( @nap ) | nap, nap.html, nap/1, nap/1.html | NapsController#put | @nap |
+| nap_path( @nap, :method => :delete ), delete_nap_path( @nap ) | nap, nap.html, nap/1, nap/1.html | NapsController#delete | @nap |
+| naps_path( @naps ), get_naps_path( @naps ) | naps, naps.html, naps/1,2,3, naps/1,2,3.html | NapsController#gets | @naps |
+| naps_path( @nap, :method => :post ), post_nap_path( @naps ) | naps, naps.html, naps/1,2,3, naps/1,2,3.html | NapsController#posts | @naps |
+| naps_path( @nap, :method => :put ), put_nap_path( @naps ) | naps, naps.html, naps/1,2,3, naps/1,2,3.html | NapsController#puts | @naps |
+| naps_path( @nap, :method => :delete ), delete_nap_path( @naps ) | naps, naps.html, naps/1,2,3, naps/1,2,3.html | NapsController#deletes | @naps |
+
+Note the 's' on the end of the controller method names in the plural case.  The above are only examples.  The paths take the usual formats .xml, .js, etc.  The id number in the singular case and the ids in the plural case are optional.  The number 0 in the singular case will return a new ActiveRecord object for the instance variable.
+
+h1. RATIONALE
+
+When Rails began flirting with 'RESTful' resources, there wasn't much RESTful about Rails' implementation other than an added conversion layer between REST verbs and the default Rails actions.  Those actions are Index (formerly List), Show, New, Edit, Create, Update, and Destroy.  We take the position that this added conversion layer is both unnecessary and counter-productive.
+
+We have demonstrated that this conversion layer, the current implementation of map.resource, is unnecessary in this plugin.  We suggest that the current implementation in Rails is counter-productive, for the reasons elaborated below.
+
+h1. BREAKING THE ORIGIN BARRIER
+
+RESTful architecture provides scalability and fault-tolerance in a network application.  A default Rails implementation overrides this with the response header "Cach-Control: private, max-age=0, must-revalidate."  This tells every node between the server and the client that every request requires the entire page to be sent on each request.
+
+Imagine a situation where the index page to your site fairly static.  Rather than sending the header above, the server responds to the root request with "Cach-Control: max-age=28800."  Boom.  What was that sound?  That was sound of your index page being served so fast that it moved faster than your server can spit the bits out.  Let's call it 'Breaking the Origin Barrier.'
+
+Your Rails web site now responds much faster, because the client web browser knows not to bother the origin server if 8 hours haven't passed since the last time you looked at the index page.  Client-side caching is the best possible performance solution in applications that transfer state representations across a network.
+
+The next-best performance solution is if an intermediate server caches the web page.  You now have that advantage as well.  Any caching servers set up between the origin server and the clients requesting that resource (the index page) won't bother passing the request along and waiting for a response.  Instead, they will simply and quickly reply with the cached page.
+
+As you can see, this could drastically decrease your server load and bandwidth needs.  This is how HTTP was designed to work.  This is one benefit of using a RESTful approach.
+
+To get this caching benefit, you could add 'expires_in' to the example above:
+<pre>
+<code>
+class NapsController < RestfulController
+  def gets
+    ...code...
+    expires_in 8.hours, :private => false
+  end
+end
+</code>
+</pre>
+(Gets is the method that corresponds to the Index action in traditional Rails apps.)
+
+h1. TIPS
+
+Rails typically treated Show, New, and Edit actions as get requests.  In our experience, we found that the edit view was always redundant with either the Show or the New view, so we discard it.  In many cases, we find that a properly scoped controller would have a form behind HTTP_AUTH (the RESTful alternative to sessions).  We also found that the form helpers obviate the New view, since we can just call @record.new_record? in the view if we need to distinguish.  So rather than maintain show(), edit(), and new(), we recommend combining edit() and new() into one get.html.erb form.  
+
+You can distinguish the editable representation of a resource either by the subject of the RESTful sentence (normally the logged-in user), or by another parameter (like appending ?edit=true to the url).  In the former case we recommend putting the logged-in views and controllers under a separate namespace in order to make it convenient to disable the caching for those GET requests.  In the latter case you can render a different template based on the presence of the edit parameter.
+
+In typical ActiveRecord implementations, the id starts with the integer 1 and increments with each record created.  We use the id number 0 to represent a new ActiveRecord instance.  Using that convention, we can obviate the separate view and controller method for New.
+
+

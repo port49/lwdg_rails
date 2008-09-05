@@ -1,7 +1,12 @@
 9/3: 1.0
 [ 8:00, 9:00 ]pm EnterpriseDB; 
 
-9/4:
+9/4: 7.0
 [ 8:00, 11:00 ]am MERB file upload
 [ 12:00, 3:00 ]pm server setup
-[ 5:30, 3:00 ]pm rails app
+[ 5:30, 6:30 ]pm rails app
+
+9/5: 
+[ 8:00, 10:00 ]am rails app
+[ 1:00, 1:30 ]pm rails app
+[ 2:00,  ]pm rails app

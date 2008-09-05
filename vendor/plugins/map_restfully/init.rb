@@ -1,0 +1,2 @@
+require 'restful_mapper'
+

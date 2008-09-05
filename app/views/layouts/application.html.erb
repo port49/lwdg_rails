@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <title>Lone Wolf Documentary Group File Manager</title>
+    <%= stylesheet_link_tag 'application' %>
+    <%= javascript_include_tag 'jquery' %>
+    <%= javascript_include_tag 'jquery.uploadProgress' %>
+    <%= javascript_include_tag 'jrails' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+  <body>
+
+    <div id="top">
+  		<div id="wolf"></div>
+      <div class="topNavigation">
+        <div>
+          <%= link_to "Folders", directories_path, :class => "selected" %>
+          <%= link_to "Users", "users_path" %>
+        </div>
+      </div>
+    </div>
+    <div id="middle">
+    <%= yield %>
+    </div>
+    <div id="bottom">
+      <div class="footer">&#169; Lone Wolf Documentary Group</div>
+    </div>
+
+  </body>
+</html>
