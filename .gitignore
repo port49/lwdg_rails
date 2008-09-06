@@ -6,4 +6,5 @@ doc/casey.time.txt
 log/*.log
 log/*.pid
 tmp/**/*
+public/files/**/*
 
