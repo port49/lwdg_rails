@@ -1,22 +1,16 @@
-tr#tr_upload {
-  font-size: 0.8em;
-}
-
-
-
 .bar {
   width: 360px;
 }
 
 #progress {
   background: #eee;
+  margin: 12px 0px 20px;
   border: 1px solid #222;
-  margin-top: 20px;
 }
 #progressbar {
   width: 0px;
-  height: 21px;
-  background: #33cccc;
+  height: 17px;
+  background: #526f8f;
 }
 
 xdiv { border: solid 1px;
@@ -50,12 +44,6 @@ td, th
     padding: 5px;
 }
 
-input
-{
-    padding: 4px;
-    font-size: 11pt;
-    *height: 28px;
-}
 
 .fieldWithErrors
 {

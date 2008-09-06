@@ -18,7 +18,8 @@
     <tr id="tr_upload" style="display:none">
       <td>&nbsp;</td>
       <td colspan="5">
-        <% form_tag "http://lwdgupload.port49.com/uploads/post.html", :id => "upload", :enctype => "multipart/form-data", :method => "post" do -%>
+        <% form_tag "#{ UPLOAD_HOST }/uploads/post.html", :id => "upload", :enctype => "multipart/form-data", :method => "post" do -%>
+          <%= hidden_field_tag 'directory[path]', path_to_id( @directory.path ) %>
           <input name="file" type="file">
           <input type="submit" value="Upload">
         <% end -%>
@@ -74,14 +75,14 @@
 </table>
 <% javascript_tag do -%>
 $(function() {
-				$('form').uploadProgress({
-					/* scripts locations for safari */
-					jqueryPath: "http://lwdg.port49.com/javascripts/jquery.js",
-					uploadProgressPath: "http://lwdg.port49.com/javascripts/jquery.uploadProgress.js",
-					progressUrl: "http://lwdgupload.port49.com/progress",
-					start:function(){},
-					uploading: function(upload) {$('#percents').html(upload.percents+'%');},
-					interval: 2000
-			    });
-			});
+  $('form#upload').uploadProgress({
+		/* scripts locations for safari */
+		jqueryPath: "http://lwdg.port49.com/javascripts/jquery.js",
+		uploadProgressPath: "http://lwdg.port49.com/javascripts/jquery.uploadProgress.js",
+		progressUrl: "<%= UPLOAD_HOST %>/progress",
+		start:function(){},
+		uploading: function(upload) {$('#percents').html(upload.percents+'%');},
+		interval: 2000
+  });
+});
 <% end -%>
