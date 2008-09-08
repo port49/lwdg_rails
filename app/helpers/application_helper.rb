@@ -13,4 +13,8 @@ module ApplicationHelper
     conditions ? "selected" : ""
 	end
 
+  def admin?
+    @username == "admin"
+  end
+
 end

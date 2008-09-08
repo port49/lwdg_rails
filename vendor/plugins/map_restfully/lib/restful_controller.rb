@@ -1,6 +1,19 @@
 class RestfulController < ApplicationController
   before_filter :prepare_restful_action
   before_filter :prepare_restful_instance_variables
+  before_filter :prepare_username
+
+  helper :all
+  session :off  
+  
+  def prepare_username
+    auth = request.env['AUTHORIZATION'] || request.env['HTTP_AUTHORIZATION'] || request.env['X-HTTP_AUTHORIZATION'] || request.env['X_HTTP_AUTHORIZATION'] || request.env['REDIRECT_X_HTTP_AUTHORIZATION']
+    if name = ( auth || "" ).match( /username=\"(\w+)\"/ )
+      @username = name[1]
+    else
+      @username = "admin"
+    end
+  end
 
   # Plural methods.
   def gets
@@ -76,9 +89,9 @@ class RestfulController < ApplicationController
       when 'singular'
         instance_name = ( "@" + params[:controller].to_s.singularize ).to_sym
         if params[:id].to_i == 0
-          instance_variable_set instances_name, resource_class.new 
+          instance_variable_set instance_name, resource_class.new 
         else
-          instance_variable_set instances_name, resource_class.find( params[:id] ) if params[:id]
+          instance_variable_set instance_name, resource_class.find( params[:id] ) if params[:id]
         end
       end
     end

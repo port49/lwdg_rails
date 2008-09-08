@@ -52,3 +52,27 @@ var File = {
 
 }
 
+var User = {
+
+  postUser: function( form_id, input_id ) {
+  },
+
+  putUser: function( anchor ) {
+    var i = $( anchor ).prev()[0];
+    var p = prompt( "New password", i.value );
+    if( p ) {
+      i.value = p;
+      i.form.submit();
+    }
+  },
+
+  deleteUser: function( anchor ) {
+    var i = $( anchor ).prev()[0];
+    var c = confirm( "Really delete this user?  This cannot be undone!" );
+    if( c ) {
+      i.form.submit();
+    }
+  }
+
+}
+

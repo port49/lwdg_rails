@@ -21,4 +21,5 @@
 [ 9:00, 10:00 ] apache authentication
 
 9/8
-[ 7:15,  ]am
+[ 7:30, 9:00 ]am rails app -- file handler
+[ 9:30,  ]am rails app -- user handler
