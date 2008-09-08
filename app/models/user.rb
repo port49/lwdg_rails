@@ -1,6 +1,5 @@
-require 'digest/md5'
-class User < ActiveRecord::Base
-  # Virtual attribute for the unencrypted password.
+class User
+=begin
   attr_accessor :password
 
   validates_presence_of     :login
@@ -36,5 +35,5 @@ class User < ActiveRecord::Base
     def password_required?
       crypted_password.blank? || !password.blank?
     end
-    
+=end    
 end
