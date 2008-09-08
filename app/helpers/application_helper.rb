@@ -9,4 +9,8 @@ module ApplicationHelper
     Directory.download_path file
   end
   
+  def selected_if( conditions )
+    conditions ? "selected" : ""
+	end
+
 end

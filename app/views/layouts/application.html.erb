@@ -10,13 +10,12 @@
   <body>
 
     <div id="top">
-  		<div id="wolf"></div>
       <div class="topNavigation">
         <div>
-<!--
-          <%= link_to "Folders", directories_path, :class => "selected" %>
-          <%= link_to "Users", "users_path" %>
--->
+          <% if username == "admin" -%>
+          <%= link_to "Folders", directories_path, :class => selected_if( params[:controller] == "directories" %>
+          <%= link_to "Users", "users_path", :class => selected_if( params[:controller] == "users" %>
+          <% end -%>
         </div>
       </div>
     </div>
