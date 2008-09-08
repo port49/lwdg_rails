@@ -1,0 +1,4 @@
+AuthType Digest
+AuthName "LWDG File Manager"
+AuthDigestFile ./.htdigest
+Require valid-user

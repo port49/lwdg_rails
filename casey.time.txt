@@ -14,3 +14,8 @@
 9/6: 2.0
 [ 5:30, 6:00 ]pm tying rails & merb together
 [ 10:30, 12:00 ]pm tying rails & merb together
+
+9/7:
+[ 11:00, 12:15 ] apache authentication
+[ 6:00, 7:00 ] apache authentication
+[ 9:00,  ] apache authentication
