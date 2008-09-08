@@ -1,7 +1,8 @@
 class DirectoriesController < RestfulController
 
   def gets
-    render :text => ActiveSupport::Base64.decode64(authorization(request).split.last || '') and return true
+    auth = request.env['HTTP_AUTHORIZATION'] || request.env['X-HTTP_AUTHORIZATION'] || request.env['X_HTTP_AUTHORIZATION'] || request.env['REDIRECT_X_HTTP_AUTHORIZATION']
+    render :text => ActiveSupport::Base64.decode64( auth.split.last || '' ) and return true
     redirect_to directory_path(  )
   end
 
