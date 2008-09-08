@@ -1,10 +1,7 @@
 class DirectoriesController < RestfulController
 
   def gets
-    auth = request.env['AUTHORIZATION'] || request.env['HTTP_AUTHORIZATION'] || request.env['X-HTTP_AUTHORIZATION'] || request.env['X_HTTP_AUTHORIZATION'] || request.env['REDIRECT_X_HTTP_AUTHORIZATION']
-    render :text => auth and return true
     redirect_to directory_path(  )
-    # "username=\"admin\""
   end
 
   def get
