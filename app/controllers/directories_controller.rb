@@ -1,7 +1,7 @@
 class DirectoriesController < RestfulController
 
   def gets
-    render :text => params.inspect and return true
+    render :text => ActiveSupport::Base64.decode64(authorization(request).split.last || '') and return true
     redirect_to directory_path(  )
   end
 
