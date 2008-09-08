@@ -1,0 +1,52 @@
+<table>
+  <caption>&gt;&nbsp;<%= link_to "users", users_path %></caption>
+  <thead>
+    <tr>
+      <th>&nbsp;</th>
+      <th><%= link_to_function image_tag( 'user_add.png', :alt => "Create a user" ), "$( 'tr#tr_upload' ).toggle()" if admin? %></th>
+      <th colspan="2" style="width:90%">name</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if admin? -%>
+    <tr id="tr_upload" style="display:none">
+      <td>&nbsp;</td>
+      <td colspan="5">
+        <% form_tag user_path, :method => "post" do -%>
+          name: <%= text_field_tag 'user[name]', 'username' %>
+          password: <%= text_field_tag 'user[password]', 'password' %>
+          <%= submit_tag "Create User" %>
+        <% end -%>
+      </td>
+    </tr>
+    <% end -%>
+    <% @users.each do |user| -%>
+    <tr>
+      <% if user[:name] == "admin" -%>
+      <td>&nbsp;</td>
+      <% else -%>
+        <% form_tag user_path( :id => user[:name] ), :method => 'delete' do -%> 
+      <td>
+          <%= hidden_field_tag 'user[name]', user[:name] %>
+          <%= link_to_function image_tag( 'user_delete.png', :alt => "Delete " + user[:name] ), "User.deleteUser( this )" %>
+      </td>
+        <% end -%>
+      <% end -%>
+      <% form_tag user_path( :id => user[:name] ), :method => 'put' do -%> 
+      <td>
+        <%= hidden_field_tag 'user[name]', user[:name] %>
+        <%= hidden_field_tag 'user[password]', "" %>
+        <%= link_to_function image_tag( 'user_edit.png', :alt => "Change password for " + user[:name] ), "User.putUser( this )" %>
+      </td>
+      <% end -%>
+      <td><%= image_tag( "user.png", :alt => user[:name] ) %></td>
+      <td class="name"><%= user[:name] %></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <% end -%>
+  </tbody>
+</table>
+

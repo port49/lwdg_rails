@@ -13,6 +13,7 @@ class User
   end
   
   def self.create( params )
+    return false if User.sanitize_username( params[:name] ) == "admin"
     file = HTAuth::DigestFile.open( @@file_location, HTAuth::File::ALTER )  
     file.add User.sanitize_username( params[:name] ), @@realm, params[:password]
     file.save!
@@ -27,6 +28,7 @@ class User
   end
   
   def self.delete( params )
+    return false if params[:name] == "admin"
     file = HTAuth::DigestFile.open( @@file_location, HTAuth::File::ALTER )  
     file.delete params[:name], @@realm
     file.save!
