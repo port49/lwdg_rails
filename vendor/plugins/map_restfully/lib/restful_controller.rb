@@ -10,8 +10,6 @@ class RestfulController < ApplicationController
     auth = request.env['AUTHORIZATION'] || request.env['HTTP_AUTHORIZATION'] || request.env['X-HTTP_AUTHORIZATION'] || request.env['X_HTTP_AUTHORIZATION'] || request.env['REDIRECT_X_HTTP_AUTHORIZATION']
     if name = ( auth || "" ).match( /username=\"(\w+)\"/ )
       @username = name[1]
-    else
-      @username = "admin"
     end
   end
 
