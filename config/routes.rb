@@ -1,6 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
 
   map.restfully :directory
+  map.restfully :file
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
   map.root :controller => "directories", :grammatical_number => "plural"

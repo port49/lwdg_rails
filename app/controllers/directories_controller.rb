@@ -1,6 +1,7 @@
 class DirectoriesController < RestfulController
 
   def gets
+    render :text => params.inspect and return true
     redirect_to directory_path(  )
   end
 

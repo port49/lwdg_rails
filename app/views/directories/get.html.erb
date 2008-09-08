@@ -1,11 +1,11 @@
 <table>
-  <caption><%= @breadcrumbs.collect{ |b| link_to( b[:name], directory_path( :id => path_to_id( b[:location] ) ) ) }.join( " &gt; " ) %></caption>
+  <caption>&gt;&nbsp;<%= @breadcrumbs.collect{ |b| link_to( b[:name], directory_path( :id => path_to_id( b[:location] ) ) ) }.join( " &gt; " ) %></caption>
   <thead>
     <tr>
       <% form_tag directory_path( :id => path_to_id( @directory.path ) ), :method => 'post', :id => 'form_add_folder' do -%> 
       <th>
         <%= hidden_field_tag 'directory[name]', '', :id => 'input_directory_name' %>
-        <%= link_to_function image_tag( 'folder_add.png', :alt => "Add a folder" ), "Directory.postDirectory('form_add_folder','input_directory_name')" %>
+        <%= link_to_function image_tag( 'folder_add.png', :alt => "Add a folder" ), "Directory.postDirectory( this )" %>
       </th>
       <% end -%>
       <th><%= link_to_function image_tag( 'page_white_add.png', :alt => "Upload a file" ), "$( 'tr#tr_upload' ).toggle()" %></th>
@@ -43,15 +43,16 @@
         <% end -%>
       <% elsif directory[:name] != "." -%>
     <tr>
-      <% form_tag directory_path( :id => path_to_id( directory[:location] ) ), :method => 'delete', :id => "form_delete_folder_#{ directory[:name] }" do -%> 
+      <% form_tag directory_path( :id => path_to_id( directory[:location] ) ), :method => 'delete' do -%> 
       <td>
-        <%= link_to_function image_tag( 'folder_delete.png', :alt => "Delete " + directory[:name] ), "Directory.deleteDirectory('form_delete_folder_#{ directory[:name] }')" %>
+        <%= hidden_field_tag 'file_delete', "" %>
+        <%= link_to_function image_tag( 'folder_delete.png', :alt => "Delete " + directory[:name] ), "Directory.deleteDirectory( this )" %>
       </td>
       <% end -%>
-      <% form_tag directory_path( :id => path_to_id( directory[:location] ) ), :method => 'put', :id => "form_folder_#{ directory[:name] }" do -%> 
+      <% form_tag directory_path( :id => path_to_id( directory[:location] ) ), :method => 'put' do -%> 
       <td>
-        <%= hidden_field_tag 'directory[name]', directory[:name], :id => "input_directory_#{ directory[:name] }_name" %>
-        <%= link_to_function image_tag( 'folder_edit.png', :alt => "Rename " + directory[:name] ), "Directory.putDirectory('form_folder_#{ directory[:name] }','input_directory_#{ directory[:name] }_name')" %>
+        <%= hidden_field_tag 'directory[name]', directory[:name] %>
+        <%= link_to_function image_tag( 'folder_edit.png', :alt => "Rename " + directory[:name] ), "Directory.putDirectory( this )" %>
       </td>
       <% end -%>
       <td><%= link_to image_tag( "folder.png", :alt => directory[:name] ), directory_path( :id => path_to_id( directory[:location] ) ) %></td>
@@ -63,9 +64,19 @@
     <% end -%>
     <% @directory.files.each do |file| -%>
     <tr>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td><%= link_to image_tag( "file.png", :alt => file[:name] ), download_path( file[:location] ) %></td>
+      <% form_tag file_path( :id => path_to_id( file[:location] ) ), :method => 'delete', :id => "form_delete_file_#{ file[:name] }" do -%> 
+      <td>
+        <%= hidden_field_tag 'file_delete', "" %>
+        <%= link_to_function image_tag( 'page_white_delete.png', :alt => "Delete " + file[:name] ), "File.deleteFile( this )" %>
+      </td>
+      <% end -%>
+      <% form_tag file_path( :id => path_to_id( file[:location] ) ), :method => 'put' do -%> 
+      <td>
+        <%= hidden_field_tag 'file[name]', file[:name] %>
+        <%= link_to_function image_tag( 'page_white_edit.png', :alt => "Rename " + file[:name] ), "File.putFile( this )" %>
+      </td>
+      <% end -%>
+      <td><%= link_to image_tag( "page_white.png", :alt => file[:name] ), download_path( file[:location] ) %></td>
       <td class="name"><%= link_to file[:name], download_path( file[:location] ) %></td>
       <td><%= number_to_human_size( file[:size] ) %></td>
       <td><%= file[:ctime].strftime("%m/%d/%Y %I:%M%p") %></td>
