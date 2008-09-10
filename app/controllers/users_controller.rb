@@ -1,4 +1,5 @@
 class UsersController < RestfulController
+  before_filter :check_admin
 
   def gets
   end
@@ -30,5 +31,9 @@ class UsersController < RestfulController
     end
   end
 
+
+  def check_admin
+    redirect_to directory_path if @username != "admin"
+  end
 end
 
