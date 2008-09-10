@@ -19,9 +19,9 @@
 		success: function() {},
 		error: function() {},
 		preloadImages: [],
-		uploadProgressPath: '/javascripts/jquery.uploadProgress.js',
-		jqueryPath: '/javascripts/jquery.js',
-                              timer: ""
+		uploadProgressPath: '../javascripts/jquery.uploadProgress.js',
+		jqueryPath: '../javascripts/jquery.js',
+		timer: ""
 	}, options);
 	
 	$(function() {

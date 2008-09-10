@@ -97,8 +97,8 @@
 $(function() {
   $('form#upload').uploadProgress({
 		/* scripts locations for safari */
-		jqueryPath: "/javascripts/jquery.js",
-		uploadProgressPath: "/javascripts/jquery.uploadProgress.js",
+		jqueryPath: "../javascripts/jquery.js",
+		uploadProgressPath: "../javascripts/jquery.uploadProgress.js",
 		progressUrl: "/progress",
 		start:function(){},
 		uploading: function(upload) {$('#percents').html(upload.percents+'%');},

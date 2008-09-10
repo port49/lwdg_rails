@@ -95,7 +95,7 @@ td, th
   border-bottom: 5px solid white;
   background-color: #060c11;
   background-image: url(/images/logo.gif);
-  background-position: 0px 0px;
+  background-position: 32px 0px;
   background-repeat: no-repeat;
 }
 
@@ -214,8 +214,7 @@ xpadding: 9px;
 {
     width: 100%;
     height: 32px;
-    *height: 34px;
-    background-color: black;
+    background-color: #060c11;
     border-top: 2px solid #BD3039;
 }
 
