@@ -34,21 +34,11 @@ alert( 'firefox0' );
 			var uuid = "";
 			for (i = 0; i < 32; i++) { uuid += Math.floor(Math.random() * 16).toString(16); }
 			
-if( $.browser.safari ) {
-alert( 'safari1' );
-} else {
-alert( 'firefox1' );
-}
       /* update uuid */
       options.uuid = uuid;
 			/* start callback */
 			options.start();
 
-if( $.browser.safari ) {
-alert( 'safari2' );
-} else {
-alert( 'firefox2' );
-}
 			/* patch the form-action tag to include the progress-id 
           if X-Progress-ID has been already added just replace it */
       if(old_id = /X-Progress-ID=([^&]+)/.exec($(this).attr("action"))) {
@@ -57,11 +47,7 @@ alert( 'firefox2' );
       } else {
 			  $(this).attr("action", jQuery(this).attr("action") + "?X-Progress-ID=" + uuid);
 			}
-if( $.browser.safari ) {
-alert( 'safari3' );
-} else {
-alert( 'firefox3' );
-}
+
 			var uploadProgress = ($.browser.safari || $.browser.opera) ? progressFrame.jQuery.uploadProgress : jQuery.uploadProgress;
 			options.timer = window.setInterval(function() { uploadProgress(this, options) }, options.interval);
 if( $.browser.safari ) {
@@ -78,8 +64,11 @@ jQuery.uploadProgress = function(e, options) {
 		type: "GET",
 		url: options.progressUrl,
 		dataType: "json",
+    username: "newguy",
+    password: "test",
 		beforeSend: function(xhr) {
 			xhr.setRequestHeader("X-Progress-ID", options.uuid);
+alert( options.uuid );
 		},
 		success: function(upload) {
 			if (upload.state == 'uploading') {
