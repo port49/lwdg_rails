@@ -12,15 +12,15 @@
 	options = $.extend({
 		interval: 2000,
 		progressBar: "#progressbar",
-		progressUrl: "http://lwdg.port49.com/progress",
+		progressUrl: "../progress",
 		start: function() {},
 		uploading: function() {},
 		complete: function() {},
 		success: function() {},
 		error: function() {},
 		preloadImages: [],
-		uploadProgressPath: "http://lwdg.port49.com/javascripts/jquery.js",
-		jqueryPath: "http://lwdg.port49.com/javascripts/jquery.uploadProgress.js",
+		uploadProgressPath: "../javascripts/jquery.js",
+		jqueryPath: "../javascripts/jquery.uploadProgress.js",
     timer: ""
 	}, options);
 	
