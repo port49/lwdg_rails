@@ -1,4 +1,5 @@
-
+<iframe src="/safariframe.html" name="progressFrame" style="width:0;height:0;position:absolute;top:-3000px"></iframe>
+			
 <table>
   <caption>&gt;&nbsp;<%= @breadcrumbs.collect{ |b| link_to( b[:name], directory_path( :id => path_to_id( b[:location] ) ) ) }.join( " &gt; " ) %></caption>
   <thead>
