@@ -12,8 +12,9 @@
 					/* scripts locations for safari */
 					jqueryPath: "../javascripts/jquery.js",
 					uploadProgressPath: "../javascripts/jquery.uploadProgress.js",
-					start:function(){},
-					uploading: function(upload) {$('#percents').html(upload.percents+'%');},
+					start:function(){ alert( 'start' ); },
+//					uploading: function(upload) {$('#percents').html(upload.percents+'%');},
+					uploading: function(upload) { alert( upload.percents ); },
 					interval: 2000
 			    });
 			});
