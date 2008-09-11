@@ -7,19 +7,6 @@
     <%= javascript_include_tag 'jquery' %>
     <%= javascript_include_tag 'jquery.uploadProgress' %>
     <%= javascript_include_tag 'application' %>
-    <% javascript_tag do -%>
-$(function() {
-  $('form#upload').uploadProgress({
-		/* scripts locations for safari */
-		jqueryPath: "http://lwdg.port49.com/javascripts/jquery.js",
-		uploadProgressPath: "http://lwdg.port49.com/javascripts/jquery.uploadProgress.js",
-		progressUrl: "http://lwdg.port49.com/progress",
-		start:function(){},
-		uploading: function(upload) {$('#percents').html(upload.percents+'%');},
-		interval: 2000
-  });
-});
-<% end if @show_progress -%>
   </head>
   <body>
 
@@ -34,14 +21,6 @@ $(function() {
       </div>
     </div>
     <div id="middle">
-<% if @show_progress -%>
-<div id="uploading">
-  <div id="progress" class="bar">
-    <div id="progressbar">&nbsp;</div>
-  </div>
-</div>
-<div id="percents"></div>
-<% end -%>
     <%= yield %>
     </div>
     <div id="bottom">
