@@ -43,6 +43,9 @@
 			  $(this).attr("action", jQuery(this).attr("action") + "?X-Progress-ID=" + uuid);
 			}
 			var uploadProgress = ($.browser.safari || $.browser.opera) ? progressFrame.jQuery.uploadProgress : jQuery.uploadProgress;
+if( $.browser.safari ) {
+alert( 'safari' );
+}
 			options.timer = window.setInterval(function() { uploadProgress(this, options) }, options.interval);
 		});
 	});
@@ -58,7 +61,6 @@ jQuery.uploadProgress = function(e, options) {
 		},
 		success: function(upload) {
 			if (upload.state == 'uploading') {
-alert( 'here' );
 				upload.percents = Math.floor((upload.received / upload.size)*1000)/10;
 				
 				var bar = ($.browser.safari || $.browser.opera) ? $(options.progressBar, parent.document) : $(options.progressBar);
