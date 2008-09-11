@@ -12,28 +12,65 @@
 	options = $.extend({
 		interval: 2000,
 		progressBar: "#progressbar",
-		progressUrl: "/progress",
+		progressUrl: "http://lwdg.port49.com/progress",
 		start: function() {},
 		uploading: function() {},
 		complete: function() {},
 		success: function() {},
 		error: function() {},
 		preloadImages: [],
-		uploadProgressPath: "/javascripts/jquery.uploadProgress.js",
-		jqueryPath: "/javascripts/jquery.js",
-		timer: ""
+		uploadProgressPath: "http://lwdg.port49.com/javascripts/jquery.js",
+		jqueryPath: "http://lwdg.port49.com/javascripts/jquery.uploadProgress.js",
+    timer: ""
 	}, options);
+	
+	$(function() {
+		//preload images
+		for(var i = 0; i<options.preloadImages.length; i++)
+		{
+		  options.preloadImages[i] = $("<img>").attr("src", options.preloadImages[i]);
+		}
+		/* tried to add iframe after submit (to not always load it) but it won't work. 
+		safari can't get scripts properly while submitting files */
+		if(($.browser.safari || $.browser.opera) && top.document == document) {
+			/* iframe to send ajax requests in safari 
+			   thanks to Michele Finotto for idea */
+			iframe = document.createElement('iframe');
+			iframe.name = "progressFrame";
+			$(iframe).css({width: '0', height: '0', position: 'absolute', top: '-3000px'});
+			document.body.appendChild(iframe);
+			
+			var d = iframe.contentWindow.document;
+			d.open();
+			/* weird - safari won't load scripts without this lines... */
+			d.write('<html><head></head><body></body></html>');
+			d.close();
+			
+			var b = d.body;
+			var s = d.createElement('script');
+			s.src = options.jqueryPath;
+			/* must be sure that jquery is loaded */
+			s.onload = function() {
+				var s1 = d.createElement('script');
+				s1.src = options.uploadProgressPath;
+				b.appendChild(s1);
+			}
+			b.appendChild(s);
+		}
+	});
   
 	return this.each(function(){
 		$(this).bind('submit', function() {
 			var uuid = "";
-			for (i = 0; i < 32; i++) { uuid += Math.floor(Math.random() * 16).toString( 16 ); }
+			for (i = 0; i < 32; i++) { uuid += Math.floor(Math.random() * 16).toString(16); }
+			
       /* update uuid */
       options.uuid = uuid;
 			/* start callback */
 			options.start();
 
-			/* patch the form-action tag to include the progress-id if X-Progress-ID has been already added just replace it */
+			/* patch the form-action tag to include the progress-id 
+          if X-Progress-ID has been already added just replace it */
       if(old_id = /X-Progress-ID=([^&]+)/.exec($(this).attr("action"))) {
         var action = $(this).attr("action").replace(old_id[1], uuid);
         $(this).attr("action", action);
@@ -57,7 +94,7 @@ jQuery.uploadProgress = function(e, options) {
 		success: function(upload) {
 			if (upload.state == 'uploading') {
 				upload.percents = Math.floor((upload.received / upload.size)*1000)/10;
- alert( upload.percents );
+				
 				var bar = ($.browser.safari || $.browser.opera) ? $(options.progressBar, parent.document) : $(options.progressBar);
 				bar.css({width: upload.percents+'%'});
 			  	options.uploading(upload);

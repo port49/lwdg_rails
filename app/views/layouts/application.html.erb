@@ -22,14 +22,6 @@ $(function() {
 <% end if @show_progress -%>
   </head>
   <body>
-<% if @show_progress -%>
-<div id="uploading">
-  <div id="progress" class="bar">
-    <div id="progressbar">&nbsp;</div>
-  </div>
-</div>
-<div id="percents"></div>
-<% end -%>
 
     <div id="top">
       <div class="topNavigation">
@@ -42,6 +34,14 @@ $(function() {
       </div>
     </div>
     <div id="middle">
+<% if @show_progress -%>
+<div id="uploading">
+  <div id="progress" class="bar">
+    <div id="progressbar">&nbsp;</div>
+  </div>
+</div>
+<div id="percents"></div>
+<% end -%>
     <%= yield %>
     </div>
     <div id="bottom">
