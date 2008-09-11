@@ -49,6 +49,7 @@
 			var b = d.body;
 			var s = d.createElement('script');
 			s.src = options.jqueryPath;
+			alert( s.src );
 			/* must be sure that jquery is loaded */
 			s.onload = function() {
 				var s1 = d.createElement('script');
