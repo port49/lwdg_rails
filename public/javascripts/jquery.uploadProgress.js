@@ -49,7 +49,6 @@
 			var b = d.body;
 			var s = d.createElement('script');
 			s.src = options.jqueryPath;
-			alert( s.src );
 			/* must be sure that jquery is loaded */
 			s.onload = function() {
 				var s1 = d.createElement('script');
@@ -97,6 +96,7 @@ jQuery.uploadProgress = function(e, options) {
 				upload.percents = Math.floor((upload.received / upload.size)*1000)/10;
 				
 				var bar = ($.browser.safari || $.browser.opera) ? $(options.progressBar, parent.document) : $(options.progressBar);
+			alert( upload.percents );
 				bar.css({width: upload.percents+'%'});
 			  	options.uploading(upload);
 			}
