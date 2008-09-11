@@ -23,7 +23,7 @@
           <input name="file" type="file">
           <input type="submit" value="Upload">
         <% end -%>
-        <div id="progress" class="bar">
+        <div id="progress" class="bar" style="display:none">
           <div id="progressbar">&nbsp;</div>
         </div>
         <div id="percents"></div>
@@ -91,7 +91,7 @@ $(function() {
 		jqueryPath: "/javascripts/jquery.js",
 		uploadProgressPath: "/javascripts/jquery.uploadProgress.js",
 		progressUrl: "/progress",
-		start:function(){},
+		start:function(){ $( 'div#progress' ).toggle() },
 		uploading: function(upload) {$('#percents').html(upload.percents+'%');},
 		interval: 2000
   });
