@@ -24,7 +24,9 @@ class Directory
   end
   
   def create_subdirectory( name )
-    Dir.mkdir( File.expand_path( File.join( @path, Directory.sanitize_directory_path( name ) ) ) )
+    directory_path = File.expand_path File.join( @path, Directory.sanitize_directory_path( name ) ) 
+    Dir.mkdir directory_path
+    File.chmod 0775, directory_path
   end
   
   def rename( name )
