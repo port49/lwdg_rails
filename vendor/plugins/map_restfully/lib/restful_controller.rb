@@ -7,6 +7,7 @@ class RestfulController < ApplicationController
   session :off  
   
   def prepare_username
+raise request.env.inspect
     auth = request.env['AUTHORIZATION'] || request.env['HTTP_AUTHORIZATION'] || request.env['X-HTTP_AUTHORIZATION'] || request.env['X_HTTP_AUTHORIZATION'] || request.env['REDIRECT_X_HTTP_AUTHORIZATION']
     if name = ( auth || "" ).match( /username=\"(\w+)\"/ )
       @username = name[1]
