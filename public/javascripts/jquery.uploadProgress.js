@@ -26,6 +26,11 @@
 
 	return this.each(function(){
 		$(this).bind('submit', function() {
+if( $.browser.safari ) {
+alert( 'safari' );
+} else {
+alert( 'firefox' );
+}
 			var uuid = "";
 			for (i = 0; i < 32; i++) { uuid += Math.floor(Math.random() * 16).toString(16); }
 			
@@ -43,9 +48,6 @@
 			  $(this).attr("action", jQuery(this).attr("action") + "?X-Progress-ID=" + uuid);
 			}
 			var uploadProgress = ($.browser.safari || $.browser.opera) ? progressFrame.jQuery.uploadProgress : jQuery.uploadProgress;
-if( $.browser.safari ) {
-alert( 'safari' );
-}
 			options.timer = window.setInterval(function() { uploadProgress(this, options) }, options.interval);
 		});
 	});
