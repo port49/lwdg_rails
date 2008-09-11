@@ -19,8 +19,8 @@
 		success: function() {},
 		error: function() {},
 		preloadImages: [],
-		uploadProgressPath: '../javascripts/jquery.uploadProgress.js',
-		jqueryPath: '../javascripts/jquery.js',
+		uploadProgressPath: "/javascripts/jquery.uploadProgress.js",
+		jqueryPath: "/javascripts/jquery.js",
 		timer: ""
 	}, options);
 	

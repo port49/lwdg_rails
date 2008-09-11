@@ -2,10 +2,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <title>Lone Wolf Documentary Group File Manager</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <%= stylesheet_link_tag 'application' %>
     <%= javascript_include_tag 'jquery' %>
     <%= javascript_include_tag 'jquery.uploadProgress' %>
     <%= javascript_include_tag 'application' %>
+    <% javascript_tag do -%>
+$(function() {
+  $('form#upload').uploadProgress({
+		/* scripts locations for safari */
+		jqueryPath: "http://lwdg.port49.com/javascripts/jquery.js",
+		uploadProgressPath: "http://lwdg.port49.com/javascripts/jquery.uploadProgress.js",
+		progressUrl: "http://lwdg.port49.com/progress",
+		start:function(){},
+		uploading: function(upload) {$('#percents').html(upload.percents+'%');},
+		interval: 2000
+  });
+});
+<% end if @show_progress -%>
   </head>
   <body>
 

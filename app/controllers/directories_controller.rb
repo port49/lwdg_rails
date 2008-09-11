@@ -14,6 +14,7 @@ class DirectoriesController < RestfulController
     end
     @breadcrumbs.pop
     @breadcrumbs.push( { :name => "top level", :location => Directory.root } ).reverse!
+    @show_progress = true
   end
 
   def post
