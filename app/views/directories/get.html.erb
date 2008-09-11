@@ -1,9 +1,3 @@
-<div id="uploading">
-  <div id="progress" class="bar">
-    <div id="progressbar">&nbsp;</div>
-  </div>
-</div>
-<div id="percents"></div>
 
 <table>
   <caption>&gt;&nbsp;<%= @breadcrumbs.collect{ |b| link_to( b[:name], directory_path( :id => path_to_id( b[:location] ) ) ) }.join( " &gt; " ) %></caption>
