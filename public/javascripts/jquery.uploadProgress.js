@@ -94,10 +94,11 @@ jQuery.uploadProgress = function(e, options) {
 		success: function(upload) {
 			if (upload.state == 'uploading') {
 				upload.percents = Math.floor((upload.received / upload.size)*1000)/10;
-				
+				upload.remaining = parseInt( ( upload.size - upload.received ) / upload.speed );
+				 
 				var bar = ($.browser.safari || $.browser.opera) ? $(options.progressBar, parent.document) : $(options.progressBar);
 				bar.css({width: upload.percents+'%'});
-			  	options.uploading(upload);
+			  options.uploading(upload);
 			}
 			
 			if (upload.state == 'done' || upload.state == 'error') {

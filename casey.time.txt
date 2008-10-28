@@ -1,4 +1,4 @@
-TOTAL: 20.75
+TOTAL: 23.75
 
 9/3: 1.0
 [ 8:00, 9:00 ]pm EnterpriseDB; 
@@ -25,3 +25,9 @@ TOTAL: 20.75
 9/8: 3.0
 [ 7:30, 9:00 ]am rails app -- file handler
 [ 9:30, 11:00 ]am rails app -- user handler
+
+9/15: 3.0
+[ 9:30, 12:30 ]pm installed application on in-house server at LWDG
+
+10/28:
+[ 10:00,  ]am additional progress bar statistics;

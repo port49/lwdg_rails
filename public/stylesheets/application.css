@@ -3,14 +3,24 @@
 }
 
 #progress {
+  float: left;
   background: #eee;
-  margin: 12px 0px 20px;
+  margin: 12px 0px 4px;
   border: 1px solid #222;
 }
 #progressbar {
   width: 0px;
   height: 17px;
   background: #526f8f;
+}
+#percents {
+  float: left;
+  margin: 16px 0px 0px 12px;
+}
+#estimates {
+  clear: both;
+  float: left;
+  margin-bottom: 20px;
 }
 
 xdiv { border: solid 1px;

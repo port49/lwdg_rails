@@ -27,6 +27,7 @@
           <div id="progressbar">&nbsp;</div>
         </div>
         <div id="percents"></div>
+        <div id="estimates"></div>
       </td>
     </tr>
     <% @directory.directories.each do |directory| -%>
@@ -92,8 +93,15 @@ $(function() {
 		uploadProgressPath: "/javascripts/jquery.uploadProgress.js",
 		progressUrl: "/progress",
 		start:function(){ $( 'div#progress' ).toggle() },
-		uploading: function(upload) {$('#percents').html(upload.percents+'%');},
-		interval: 2000
+		uploading: function(upload) {
+		  $('#percents').html( upload.percents+'%' );
+		  if( parseInt( upload.speed ) > 0 ) {
+		    $('#estimates').html( 'approximately '+readableTime( upload.remaining )+' remaining at '+readableBytes( parseInt( upload.speed ), 2, false )+'/s' );
+		  } else {
+		    $('#estimates').html( 'waiting for server...' );
+		  }
+		}
+		interval: 1750
   });
 });
 <% end -%>

@@ -1,2 +1,2 @@
-Use this README file to introduce your application and point to useful places in the API for learning more.
-Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
+The following JSON comes back to the progress bar:
+ 'state' : 'uploading', 'received' : 369793, 'size' : 1741010, 'speed' : 123264  })

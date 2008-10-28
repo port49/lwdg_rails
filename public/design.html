@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Lone Wolf Documentary Group File Manager</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/stylesheets/application.css?1221090377" media="screen" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/jquery.js?1220565622" type="text/javascript"></script>
+    <script src="/javascripts/jquery.uploadProgress.js?1221139225" type="text/javascript"></script>
+
+    <script src="/javascripts/application.js?1220886118" type="text/javascript"></script>
+  </head>
+  <body>
+
+    <div id="top">
+      <div class="topNavigation">
+        <div>
+                    <a href="/directories" class="selected">Folders</a>
+
+          <a href="/users" class="">Users</a>
+                  </div>
+      </div>
+    </div>
+    <div id="middle">
+
+
+<table>
+  <caption>&gt;&nbsp;<a href="/directory">top level</a></caption>
+  <thead>
+    <tr>
+      <th>
+        <form action="/directory" id="form_add_folder" method="post"> 
+          <input id="input_directory_name" name="directory[name]" value="" type="hidden">
+          <a href="#" onclick="Directory.postDirectory( this ); return false;"><img alt="Add a folder" src="/images/folder_add.png?1220645587"></a>
+        </form>      </th>
+
+      <th><a href="#" onclick="$( 'tr#tr_upload' ).toggle(); return false;"><img alt="Upload a file" src="/images/page_white_add.png?1220645587"></a></th>
+      <th colspan="2">name</th>
+      <th>size</th>
+      <th>modified</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr id="tr_upload" style="">
+      <td>&nbsp;</td>
+      <td colspan="5">
+        <form action="http://lwdg.port49.com/upload/post?X-Progress-ID=edad055d50ad929e4a055562a47b4883" enctype="multipart/form-data" id="upload" method="post">          <input id="directory[path]" name="directory[path]" type="hidden">
+          <input name="file" type="file">
+          <input value="Upload" type="submit">
+        </form>
+        <div id="progress" class="bar" style="">
+          <div style="width: 11.5%;" id="progressbar">&nbsp;</div>
+        </div>
+        <div id="percents">11.5% at 1.2KB/s</div>
+        <div id="estimates">approximately 00:00:00 remaining</div>
+      </td>
+    </tr>
+                                                <tr>
+      <td>
+        <form action="/directory?id=%2Fguest" method="post"><div style="margin: 0pt; padding: 0pt;"><input name="_method" value="delete" type="hidden"></div> 
+          <input id="file_delete" name="file_delete" value="" type="hidden">
+          <a href="#" onclick="Directory.deleteDirectory( this ); return false;"><img alt="Delete guest" src="/images/folder_delete.png?1220645587"></a>
+
+        </form>      </td>
+      <td>
+        <form action="/directory?id=%2Fguest" method="post"><div style="margin: 0pt; padding: 0pt;"><input name="_method" value="put" type="hidden"></div> 
+          <input id="directory[name]" name="directory[name]" value="guest" type="hidden">
+          <a href="#" onclick="Directory.putDirectory( this ); return false;"><img alt="Rename guest" src="/images/folder_edit.png?1220645587"></a>
+        </form>      </td>
+      <td><a href="/directory?id=%2Fguest"><img alt="guest" src="/images/folder.png?1220645587"></a></td>
+      <td class="name"><a href="/directory?id=%2Fguest">guest</a></td>
+
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+                    <tr>
+      <td>
+        <form action="/directory?id=%2Fhistory" method="post"><div style="margin: 0pt; padding: 0pt;"><input name="_method" value="delete" type="hidden"></div> 
+          <input id="file_delete" name="file_delete" value="" type="hidden">
+          <a href="#" onclick="Directory.deleteDirectory( this ); return false;"><img alt="Delete history" src="/images/folder_delete.png?1220645587"></a>
+        </form>      </td>
+
+      <td>
+        <form action="/directory?id=%2Fhistory" method="post"><div style="margin: 0pt; padding: 0pt;"><input name="_method" value="put" type="hidden"></div> 
+          <input id="directory[name]" name="directory[name]" value="history" type="hidden">
+          <a href="#" onclick="Directory.putDirectory( this ); return false;"><img alt="Rename history" src="/images/folder_edit.png?1220645587"></a>
+        </form>      </td>
+      <td><a href="/directory?id=%2Fhistory"><img alt="history" src="/images/folder.png?1220645587"></a></td>
+      <td class="name"><a href="/directory?id=%2Fhistory">history</a></td>
+      <td>&nbsp;</td>
+
+      <td>&nbsp;</td>
+    </tr>
+                    <tr>
+      <td>
+        <form action="/directory?id=%2Findependent" method="post"><div style="margin: 0pt; padding: 0pt;"><input name="_method" value="delete" type="hidden"></div> 
+          <input id="file_delete" name="file_delete" value="" type="hidden">
+          <a href="#" onclick="Directory.deleteDirectory( this ); return false;"><img alt="Delete independent" src="/images/folder_delete.png?1220645587"></a>
+        </form>      </td>
+      <td>
+
+        <form action="/directory?id=%2Findependent" method="post"><div style="margin: 0pt; padding: 0pt;"><input name="_method" value="put" type="hidden"></div> 
+          <input id="directory[name]" name="directory[name]" value="independent" type="hidden">
+          <a href="#" onclick="Directory.putDirectory( this ); return false;"><img alt="Rename independent" src="/images/folder_edit.png?1220645587"></a>
+        </form>      </td>
+      <td><a href="/directory?id=%2Findependent"><img alt="independent" src="/images/folder.png?1220645587"></a></td>
+      <td class="name"><a href="/directory?id=%2Findependent">independent</a></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+
+    </tr>
+                    <tr>
+      <td>
+        <form action="/directory?id=%2Fnational_geographic_channel" method="post"><div style="margin: 0pt; padding: 0pt;"><input name="_method" value="delete" type="hidden"></div> 
+          <input id="file_delete" name="file_delete" value="" type="hidden">
+          <a href="#" onclick="Directory.deleteDirectory( this ); return false;"><img alt="Delete national_geographic_channel" src="/images/folder_delete.png?1220645587"></a>
+        </form>      </td>
+      <td>
+        <form action="/directory?id=%2Fnational_geographic_channel" method="post"><div style="margin: 0pt; padding: 0pt;"><input name="_method" value="put" type="hidden"></div> 
+          <input id="directory[name]" name="directory[name]" value="national_geographic_channel" type="hidden">
+
+          <a href="#" onclick="Directory.putDirectory( this ); return false;"><img alt="Rename national_geographic_channel" src="/images/folder_edit.png?1220645587"></a>
+        </form>      </td>
+      <td><a href="/directory?id=%2Fnational_geographic_channel"><img alt="national_geographic_channel" src="/images/folder.png?1220645587"></a></td>
+      <td class="name"><a href="/directory?id=%2Fnational_geographic_channel">national_geographic_channel</a></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+                    <tr>
+
+      <td>
+        <form action="/directory?id=%2Fnova" method="post"><div style="margin: 0pt; padding: 0pt;"><input name="_method" value="delete" type="hidden"></div> 
+          <input id="file_delete" name="file_delete" value="" type="hidden">
+          <a href="#" onclick="Directory.deleteDirectory( this ); return false;"><img alt="Delete nova" src="/images/folder_delete.png?1220645587"></a>
+        </form>      </td>
+      <td>
+        <form action="/directory?id=%2Fnova" method="post"><div style="margin: 0pt; padding: 0pt;"><input name="_method" value="put" type="hidden"></div> 
+          <input id="directory[name]" name="directory[name]" value="nova" type="hidden">
+          <a href="#" onclick="Directory.putDirectory( this ); return false;"><img alt="Rename nova" src="/images/folder_edit.png?1220645587"></a>
+
+        </form>      </td>
+      <td><a href="/directory?id=%2Fnova"><img alt="nova" src="/images/folder.png?1220645587"></a></td>
+      <td class="name"><a href="/directory?id=%2Fnova">nova</a></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+                  <tr>
+      <td>
+
+        <form action="/file?id=%2Fa_nasa_upload3.jpg" id="form_delete_file_a_nasa_upload3.jpg" method="post"><div style="margin: 0pt; padding: 0pt;"><input name="_method" value="delete" type="hidden"></div> 
+          <input id="file_delete" name="file_delete" value="" type="hidden">
+          <a href="#" onclick="File.deleteFile( this ); return false;"><img alt="Delete a_nasa_upload3.jpg" src="/images/page_white_delete.png?1220645587"></a>
+        </form>      </td>
+      <td>
+        <form action="/file?id=%2Fa_nasa_upload3.jpg" method="post"><div style="margin: 0pt; padding: 0pt;"><input name="_method" value="put" type="hidden"></div> 
+          <input id="file[name]" name="file[name]" value="a_nasa_upload3.jpg" type="hidden">
+          <a href="#" onclick="File.putFile( this ); return false;"><img alt="Rename a_nasa_upload3.jpg" src="/images/page_white_edit.png?1220876555"></a>
+        </form>      </td>
+
+      <td><a href="files/a_nasa_upload3.jpg"><img alt="a_nasa_upload3.jpg" src="/images/page_white.png?1220645587"></a></td>
+      <td class="name"><a href="files/a_nasa_upload3.jpg">a_nasa_upload3.jpg</a></td>
+      <td>131.3 KB</td>
+      <td>10/27/2008 01:03PM</td>
+    </tr>
+        <tr>
+      <td>
+
+        <form action="/file?id=%2Fsig05-013.tif" id="form_delete_file_sig05-013.tif" method="post"><div style="margin: 0pt; padding: 0pt;"><input name="_method" value="delete" type="hidden"></div> 
+          <input id="file_delete" name="file_delete" value="" type="hidden">
+          <a href="#" onclick="File.deleteFile( this ); return false;"><img alt="Delete sig05-013.tif" src="/images/page_white_delete.png?1220645587"></a>
+        </form>      </td>
+      <td>
+        <form action="/file?id=%2Fsig05-013.tif" method="post"><div style="margin: 0pt; padding: 0pt;"><input name="_method" value="put" type="hidden"></div> 
+          <input id="file[name]" name="file[name]" value="sig05-013.tif" type="hidden">
+          <a href="#" onclick="File.putFile( this ); return false;"><img alt="Rename sig05-013.tif" src="/images/page_white_edit.png?1220876555"></a>
+        </form>      </td>
+
+      <td><a href="files/sig05-013.tif"><img alt="sig05-013.tif" src="/images/page_white.png?1220645587"></a></td>
+      <td class="name"><a href="files/sig05-013.tif">sig05-013.tif</a></td>
+      <td>1.7 MB</td>
+      <td>09/15/2008 04:13PM</td>
+    </tr>
+        <tr>
+      <td>
+
+        <form action="/file?id=%2Fssc2008-15b_mac.tif" id="form_delete_file_ssc2008-15b_mac.tif" method="post"><div style="margin: 0pt; padding: 0pt;"><input name="_method" value="delete" type="hidden"></div> 
+          <input id="file_delete" name="file_delete" value="" type="hidden">
+          <a href="#" onclick="File.deleteFile( this ); return false;"><img alt="Delete ssc2008-15b_mac.tif" src="/images/page_white_delete.png?1220645587"></a>
+        </form>      </td>
+      <td>
+        <form action="/file?id=%2Fssc2008-15b_mac.tif" method="post"><div style="margin: 0pt; padding: 0pt;"><input name="_method" value="put" type="hidden"></div> 
+          <input id="file[name]" name="file[name]" value="ssc2008-15b_mac.tif" type="hidden">
+          <a href="#" onclick="File.putFile( this ); return false;"><img alt="Rename ssc2008-15b_mac.tif" src="/images/page_white_edit.png?1220876555"></a>
+        </form>      </td>
+
+      <td><a href="files/ssc2008-15b_mac.tif"><img alt="ssc2008-15b_mac.tif" src="/images/page_white.png?1220645587"></a></td>
+      <td class="name"><a href="files/ssc2008-15b_mac.tif">ssc2008-15b_mac.tif</a></td>
+      <td>8.5 MB</td>
+      <td>09/15/2008 04:19PM</td>
+    </tr>
+      </tbody>
+</table>
+
+
+
+<script type="text/javascript">
+//<![CDATA[
+$(function() {
+  $('form#upload').uploadProgress({
+		/* scripts locations for safari */
+		jqueryPath: "/javascripts/jquery.js",
+		uploadProgressPath: "/javascripts/jquery.uploadProgress.js",
+		progressUrl: "/progress",
+		start:function(){ $( 'div#progress' ).toggle() },
+		uploading: function(upload){ 
+		  $('#percents').html( upload.percents+'%' ); //11.5% at 1.2KB/s
+		  $('#estimates').html( 'approximately '+readableTime( upload.remaining )+' remaining at '+readableBytes( upload.speed, 2, false )+'/s' ); //approximately 00:00:00 remaining
+		},
+		interval: 2000
+  });
+});
+
+//]]>
+</script>
+
+    </div>
+    <div id="bottom">
+      <div class="footer">&#169; Lone Wolf Documentary Group</div>
+
+    </div>
+
+  </body>
+</html>
+
