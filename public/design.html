@@ -23,27 +23,24 @@
     <div id="middle">
 
 
+
 <table>
   <caption>&gt;&nbsp;<a href="/directory">top level</a></caption>
-  <thead>
-    <tr>
-      <th>
-        <form action="/directory" id="form_add_folder" method="post"> 
-          <input id="input_directory_name" name="directory[name]" value="" type="hidden">
-          <a href="#" onclick="Directory.postDirectory( this ); return false;"><img alt="Add a folder" src="/images/folder_add.png?1220645587"></a>
-        </form>      </th>
-
-      <th><a href="#" onclick="$( 'tr#tr_upload' ).toggle(); return false;"><img alt="Upload a file" src="/images/page_white_add.png?1220645587"></a></th>
-      <th colspan="2">name</th>
-      <th>size</th>
-      <th>modified</th>
-    </tr>
-  </thead>
   <tbody>
-
+    <tr>
+      <td>
+        <form action="/directory" id="form_add_folder" method="post" style="display:inline"> 
+          <input id="input_directory_name" name="directory[name]" value="" type="hidden">
+          <a href="#" onclick="Directory.postDirectory( this ); return false;" class="add"><img alt="Add a folder" src="/images/folder_add.png?1220645587"> create new folder</a>
+        </form>
+      </td>
+      <td>
+        <a href="#" onclick="$( 'tr#tr_upload' ).toggle(); return false;" class="add"><img alt="Upload a file" src="/images/page_white_add.png?1220645587"> upload new files</a>
+      </td>
+    </tr>
     <tr id="tr_upload" style="">
       <td>&nbsp;</td>
-      <td colspan="5">
+      <td>
         <form action="http://lwdg.port49.com/upload/post?X-Progress-ID=edad055d50ad929e4a055562a47b4883" enctype="multipart/form-data" id="upload" method="post">          <input id="directory[path]" name="directory[path]" type="hidden">
           <input name="file" type="file">
           <input value="Upload" type="submit">
@@ -55,6 +52,19 @@
         <div id="estimates">approximately 00:00:00 remaining</div>
       </td>
     </tr>
+  </tbody>
+</table>
+<table>
+  <thead>
+    <tr>
+      <th colspan="2">&nbsp;</th>
+      <th colspan="2">name</th>
+      <th>size</th>
+      <th>modified</th>
+    </tr>
+  </thead>
+  <tbody>
+
                                                 <tr>
       <td>
         <form action="/directory?id=%2Fguest" method="post"><div style="margin: 0pt; padding: 0pt;"><input name="_method" value="delete" type="hidden"></div> 

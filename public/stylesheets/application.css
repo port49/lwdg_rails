@@ -125,9 +125,10 @@ td, th
   width: 95%;
 }
 #middle table caption {
-  padding: 0.7em 0;
+  padding: 1.7em 0;
   text-indent: 1em;
   text-align: left;
+  font-weight: bold;
 }
 #middle table th {
 //  vertical-align: bottom;
@@ -136,6 +137,13 @@ td, th
   width: 55%;
 }
 #middle table a {
+  color: black;
+}
+#middle table td a.add {
+  font-weight: normal;
+  font-size: 10px;
+  letter-spacing: 0;
+  text-decoration: none;
   color: black;
 }
 

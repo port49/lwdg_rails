@@ -1,20 +1,16 @@
 <table>
   <caption>&gt;&nbsp;<%= @breadcrumbs.collect{ |b| link_to( b[:name], directory_path( :id => path_to_id( b[:location] ) ) ) }.join( " &gt; " ) %></caption>
-  <thead>
+  <tbody>
     <tr>
-      <th>
+      <td>
         <% form_tag directory_path( :id => path_to_id( @directory.path ) ), :method => 'post', :id => 'form_add_folder' do -%> 
           <%= hidden_field_tag 'directory[name]', '', :id => 'input_directory_name' %>
           <%= link_to_function image_tag( 'folder_add.png', :alt => "Add a folder" ), "Directory.postDirectory( this )" %>
         <% end -%>
-      </th>
-      <th><%= link_to_function image_tag( 'page_white_add.png', :alt => "Upload a file" ), "$( 'tr#tr_upload' ).toggle()" %></th>
-      <th colspan="2">name</th>
-      <th>size</th>
-      <th>modified</th>
+      </td>
+      <td><%= link_to_function image_tag( 'page_white_add.png', :alt => "Upload a file" ), "$( 'tr#tr_upload' ).toggle()" %></td>
+      <td>&nbsp;</td>
     </tr>
-  </thead>
-  <tbody>
     <tr id="tr_upload" style="display:none">
       <td>&nbsp;</td>
       <td colspan="5">
@@ -30,6 +26,20 @@
         <div id="estimates"></div>
       </td>
     </tr>
+  </tbody>
+</table>
+
+<table>
+  <caption>&gt;&nbsp;<%= @breadcrumbs.collect{ |b| link_to( b[:name], directory_path( :id => path_to_id( b[:location] ) ) ) }.join( " &gt; " ) %></caption>
+  <thead>
+    <tr>
+      <th colspan="2"></th>
+      <th colspan="2">name</th>
+      <th>size</th>
+      <th>modified</th>
+    </tr>
+  </thead>
+  <tbody>
     <% @directory.directories.each do |directory| -%>
       <% if directory[:name] == ".." -%>
         <% unless Directory.is_root? @directory.path -%>
@@ -106,7 +116,7 @@ $(function() {
       $('#estimates').html( 'transfer complete' );
 		},
 		error: function(upload) {
-      $('#estimates').html( 'connection error...' );
+      $('#estimates').html( 'connection error, halted' );
 		},
 		interval: 1750
   });
