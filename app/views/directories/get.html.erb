@@ -101,6 +101,13 @@ $(function() {
 		    $('#estimates').html( 'waiting for server...' );
 		  }
 		},
+		success: function(upload) {
+		  $('#percents').html( '100%' );
+      $('#estimates').html( 'transfer complete' );
+		},
+		error: function(upload) {
+      $('#estimates').html( 'connection error...' );
+		},
 		interval: 1750
   });
 });
