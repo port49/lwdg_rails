@@ -5,15 +5,15 @@
       <td>
         <% form_tag directory_path( :id => path_to_id( @directory.path ) ), :method => 'post', :id => 'form_add_folder' do -%> 
           <%= hidden_field_tag 'directory[name]', '', :id => 'input_directory_name' %>
-          <%= link_to_function image_tag( 'folder_add.png', :alt => "Add a folder" ) + ' create new folder', "Directory.postDirectory( this )" %>
+          <%= link_to_function image_tag( 'folder_add.png', :alt => "Add a folder" ) + ' create new folder', "Directory.postDirectory( this )", :class => 'add' %>
         <% end -%>
       </td>
-      <td><%= link_to_function image_tag( 'page_white_add.png', :alt => "Upload a file" ) + ' upload new files', "$( 'tr#tr_upload' ).toggle()" %></td>
+      <td><%= link_to_function image_tag( 'page_white_add.png', :alt => "Upload a file" ) + ' upload new files', "$( 'tr#tr_upload' ).toggle()", :class => 'add' %></td>
       <td>&nbsp;</td>
     </tr>
     <tr id="tr_upload" style="display:none">
       <td>&nbsp;</td>
-      <td colspan="5">
+      <td>
         <% form_tag "#{ UPLOAD_HOST }/upload/post", :id => "upload", :enctype => "multipart/form-data", :method => "post" do -%>
           <%= hidden_field_tag 'directory[path]', path_to_id( @directory.path ) %>
           <input name="file" type="file">
@@ -25,6 +25,7 @@
         <div id="percents"></div>
         <div id="estimates"></div>
       </td>
+      <td>&nbsp;</td>
     </tr>
   </tbody>
 </table>
