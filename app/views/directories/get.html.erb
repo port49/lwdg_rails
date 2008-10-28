@@ -30,7 +30,6 @@
 </table>
 
 <table>
-  <caption>&gt;&nbsp;<%= @breadcrumbs.collect{ |b| link_to( b[:name], directory_path( :id => path_to_id( b[:location] ) ) ) }.join( " &gt; " ) %></caption>
   <thead>
     <tr>
       <th colspan="2"></th>
