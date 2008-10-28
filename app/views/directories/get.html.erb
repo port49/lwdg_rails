@@ -8,7 +8,7 @@
           <%= link_to_function image_tag( 'folder_add.png', :alt => "Add a folder" ) + '&nbsp;create&nbsp;new&nbsp;folder', "Directory.postDirectory( this )", :class => 'add' %>
         <% end -%>
       </td>
-      <td style="width:13em;"><%= link_to_function image_tag( 'page_white_add.png', :alt => "Upload a file" ) + '&nbsp;upload&nbsp;new&nbsp;files', "$( 'tr#tr_upload' ).toggle()", :class => 'add' %></td>
+      <td><%= link_to_function image_tag( 'page_white_add.png', :alt => "Upload a file" ) + '&nbsp;upload&nbsp;new&nbsp;files', "$( 'tr#tr_upload' ).toggle()", :class => 'add' %></td>
       <td>&nbsp;</td>
     </tr>
     <tr id="tr_upload" style="display:none">
