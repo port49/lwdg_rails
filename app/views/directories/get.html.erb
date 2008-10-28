@@ -2,13 +2,13 @@
   <caption>&gt;&nbsp;<%= @breadcrumbs.collect{ |b| link_to( b[:name], directory_path( :id => path_to_id( b[:location] ) ) ) }.join( " &gt; " ) %></caption>
   <tbody>
     <tr>
-      <td>
+      <td style="width:13em;">
         <% form_tag directory_path( :id => path_to_id( @directory.path ) ), :method => 'post', :id => 'form_add_folder' do -%> 
           <%= hidden_field_tag 'directory[name]', '', :id => 'input_directory_name' %>
-          <%= link_to_function image_tag( 'folder_add.png', :alt => "Add a folder" ) + ' create new folder', "Directory.postDirectory( this )", :class => 'add' %>
+          <%= link_to_function image_tag( 'folder_add.png', :alt => "Add a folder" ) + '&nbsp;create&nbsp;new&nbsp;folder', "Directory.postDirectory( this )", :class => 'add' %>
         <% end -%>
       </td>
-      <td><%= link_to_function image_tag( 'page_white_add.png', :alt => "Upload a file" ) + ' upload new files', "$( 'tr#tr_upload' ).toggle()", :class => 'add' %></td>
+      <td style="width:13em;"><%= link_to_function image_tag( 'page_white_add.png', :alt => "Upload a file" ) + '&nbsp;upload&nbsp;new&nbsp;files', "$( 'tr#tr_upload' ).toggle()", :class => 'add' %></td>
       <td>&nbsp;</td>
     </tr>
     <tr id="tr_upload" style="display:none">
