@@ -373,3 +373,7 @@ img
     font-size: 10px;
     padding: 8px 10px 15px 15px;
 }
+
+td.files_queue form div span div {
+  padding: 5px 0px;
+}

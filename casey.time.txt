@@ -31,3 +31,7 @@ TOTAL: 23.75
 
 10/28:
 [ 10:00, 11:30 ]am additional progress bar statistics;
+[ 1:00, 1:30 ]am added labels to top-row nav, rearranged XHTML accordingly;
+
+10/29:
+[ 2:30,  ]pm multiple file upload; 
