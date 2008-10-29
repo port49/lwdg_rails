@@ -17,10 +17,10 @@
         <% form_tag "#{ UPLOAD_HOST }/upload/post", :id => "upload", :enctype => "multipart/form-data", :method => "post" do -%>
           <%= hidden_field_tag 'directory[path]', path_to_id( @directory.path ) %>
           <input name="file" type="file" class="multi">
+          <div>
+            <input type="submit" value="Upload Files">
+          </div>
         <% end -%>
-        <div>
-          <input type="submit" value="Upload Files">
-        </div>
         <div id="progress" class="bar" style="display:none">
           <div id="progressbar">&nbsp;</div>
         </div>

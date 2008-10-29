@@ -34,4 +34,4 @@ TOTAL: 23.75
 [ 1:00, 1:30 ]am added labels to top-row nav, rearranged XHTML accordingly;
 
 10/29:
-[ 2:30,  ]pm multiple file upload; 
+[ 2:30, 3:00 ]pm multiple file upload; 
