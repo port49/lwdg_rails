@@ -30,9 +30,6 @@ var Directory = {
 
 var File = {
 
-  postFile: function( form_id, input_id ) {
-  },
-
   putFile: function( anchor ) {
     var i = $( anchor ).prev()[0];
     var p = prompt( "Rename file", i.value );
@@ -48,6 +45,17 @@ var File = {
     if( c ) {
       i.form.submit();
     }
+  },
+  
+  addInput: function( button ) {
+    var button = $( button );
+    var count = button.data( 'count' );
+    if( !count ) {
+      count = 1;
+    }
+    button.data( 'count', ( count + 1 ) );
+    button.after( '<br /><input name=\'file[' + count + ']\' type=\'file\' />' );
+    return false;
   }
 
 }
