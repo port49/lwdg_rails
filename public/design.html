@@ -41,15 +41,23 @@
     <tr id="tr_upload" style="">
       <td>&nbsp;</td>
       <td>
-        <form action="http://lwdg.port49.com/upload/post?X-Progress-ID=edad055d50ad929e4a055562a47b4883" enctype="multipart/form-data" id="upload" method="post">          <input id="directory[path]" name="directory[path]" type="hidden">
-          <input name="file" type="file">
-          <input value="Upload" type="submit">
+        <form action="http://lwdg.port49.com/upload/post" enctype="multipart/form-data" id="upload" method="post">
+          <input id="directory[path]" name="directory[path]" type="hidden">
+          <input name="file[0]" type="file"><button onclick="File.addInput( this );return false;">+</button><br>
+          <input name="file[2]" type="file"><button onclick="File.removeInput( this );return false;">-</button><br>
+          <input name="file[1]" type="file"><button onclick="File.removeInput( this );return false;">-</button>
+          <div>
+            <input value="Upload Files" type="submit">
+          </div>
         </form>
-        <div id="progress" class="bar" style="">
-          <div style="width: 11.5%;" id="progressbar">&nbsp;</div>
+        <div id="progress_container">
+          <div id="totals">uploading 3.2MBs</div>
+          <div id="progress" class="bar" style="">
+            <div style="width: 11.5%;" id="progressbar">&nbsp;</div>
+          </div>
+          <div id="percents">11.5%</div>
+          <div id="estimates">approximately 00:00:00 remaining at 1.2KB/s</div>
         </div>
-        <div id="percents">11.5% at 1.2KB/s</div>
-        <div id="estimates">approximately 00:00:00 remaining</div>
       </td>
     </tr>
   </tbody>

@@ -21,11 +21,14 @@
             <input type="submit" value="Upload Files" />
           </div>
         <% end -%>
-        <div id="progress" class="bar" style="display:none">
-          <div id="progressbar">&nbsp;</div>
+        <div id="progress_container" style="display:none">
+          <div id="totals"></div>
+          <div id="progress" class="bar">
+            <div id="progressbar">&nbsp;</div>
+          </div>
+          <div id="percents"></div>
+          <div id="estimates"></div>
         </div>
-        <div id="percents"></div>
-        <div id="estimates"></div>
       </td>
       <td>&nbsp;</td>
     </tr>
@@ -104,8 +107,9 @@ $(function() {
 		jqueryPath: "/javascripts/jquery.js",
 		uploadProgressPath: "/javascripts/jquery.uploadProgress.js",
 		progressUrl: "/progress",
-		start:function(){ $( 'div#progress' ).toggle() },
+		start:function(){ $( 'div#progress_container' ).toggle() },
 		uploading: function(upload) {
+		  $('#totals').html( 'uploading '+readableBytes( parseInt( upload.size ), 2, false ) );
 		  $('#percents').html( upload.percents+'%' );
 		  if( parseInt( upload.speed ) > 0 ) {
 		    $('#estimates').html( 'approximately '+readableTime( upload.remaining )+' remaining at '+readableBytes( parseInt( upload.speed ), 2, false )+'/s' );
