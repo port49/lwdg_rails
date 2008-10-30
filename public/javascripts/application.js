@@ -54,7 +54,17 @@ var File = {
       count = 1;
     }
     button.data( 'count', ( count + 1 ) );
-    button.after( '<br /><input name=\'file[' + count + ']\' type=\'file\' />' );
+    button.after( "<br /><input name='file[" + count + "]' type='file' /><button onclick='File.removeInput( this );return false;'>-</button>" );
+    return false;
+  },
+  
+  removeInput: function( button ) {
+    var button = $( button );
+    var input = button.prev();
+    var br = input.prev();
+    br.remove();
+    input.remove();
+    button.remove();
     return false;
   }
 
