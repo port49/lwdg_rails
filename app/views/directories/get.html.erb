@@ -16,9 +16,9 @@
       <td class="files_queue">
         <% form_tag "#{ UPLOAD_HOST }/upload/post", :id => "upload", :enctype => "multipart/form-data", :method => "post" do -%>
           <%= hidden_field_tag 'directory[path]', path_to_id( @directory.path ) %>
-          <input name="file" type="file" class="multi">
+          <input name="file" type="file" /><button onclick="$( this ).after( '<br /><input name=\'file\' type=\'file\' />' );return false;">+</button>
           <div>
-            <input type="submit" value="Upload Files">
+            <input type="submit" value="Upload Files" />
           </div>
         <% end -%>
         <div id="progress" class="bar" style="display:none">
