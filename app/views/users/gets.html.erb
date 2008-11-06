@@ -1,9 +1,18 @@
 <table>
   <caption>&gt;&nbsp;<%= link_to "users", users_path %></caption>
+  <tbody>
+    <tr>
+      <td><%= link_to_function image_tag( 'user_add.png', :alt => "Create a user" ) + '&nbsp;create&nbsp;new&nbsp;user', "$( 'tr#tr_upload' ).toggle()" if admin? %></td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<table>
   <thead>
     <tr>
-      <th>&nbsp;</th>
-      <th><%= link_to_function image_tag( 'user_add.png', :alt => "Create a user" ), "$( 'tr#tr_upload' ).toggle()" if admin? %></th>
+      <th colspan="2"></th>
       <th colspan="2">name</th>
       <th>&nbsp;</th>
       <th>&nbsp;</th>

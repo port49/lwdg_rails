@@ -1,0 +1,78 @@
+<VirtualHost *:80>
+SuexecUserGroup "#519" "#515"
+ServerName lwdg.port49.com
+ServerAlias www.lwdg.port49.com
+DocumentRoot /home/lwdg/public_html/public
+RackBaseURI /upload
+ErrorLog /home/lwdg/logs/error_log
+CustomLog /home/lwdg/logs/access_log combined
+DirectoryIndex index.html
+<Directory /home/lwdg/public_html/public>
+  Options Indexes IncludesNOEXEC FollowSymLinks
+  allow from all
+  AllowOverride All
+</Directory>
+<Location />
+  AuthType Basic
+  AuthUserFile /home/lwdg/public_html/.htpasswd
+  AuthGroupFile /home/lwdg/public_html/.htgroup
+  AuthName "LWDG File Manager"
+  Require valid-user
+  TrackUploads On
+</Location>
+<Location /files>
+  Require group LoneWolf
+</Location>
+<Location /progress>
+  Allow from all
+  Satisfy Any
+  ReportUploads On
+</Location>
+<Location /javascripts>
+  Allow from all
+  Satisfy Any
+</Location>
+</VirtualHost>
+
+
+# Example mod_ftp configuration
+Include conf/extra/ftpd.conf
+
+
+<VirtualHost *:80>
+SuexecUserGroup "#519" "#515"
+ServerName lwdg.port49.com
+ServerAlias www.lwdg.port49.com
+DocumentRoot /home/lwdg/public_html/public
+RackBaseURI /upload
+ErrorLog /home/lwdg/logs/error_log
+CustomLog /home/lwdg/logs/access_log combined
+DirectoryIndex index.html
+<Directory /home/lwdg/public_html/public>
+  Options Indexes IncludesNOEXEC FollowSymLinks
+  allow from all
+  AllowOverride All
+  AuthType Basic
+  AuthUserFile /home/lwdg/public_html/.htpasswd
+  AuthGroupFile /home/lwdg/public_html/.htgroup
+  AuthName "LWDG File Manager"
+  Require valid-user
+  TrackUploads On
+</Directory>
+<Directory /home/lwdg/public_html/public/files>
+  Require group LoneWolf
+</Directory>
+<Location /progress>
+  Allow from all
+  Satisfy Any
+  ReportUploads On
+</Location>
+<Location /javascripts>
+  Allow from all
+  Satisfy Any
+</Location>
+</VirtualHost>
+
+
+http://lwdg.port49.com/files/restricted/client1/a_nasa_upload0.jpg
+http://lwdg.port49.com/files/a_nasa_upload0.jpg
