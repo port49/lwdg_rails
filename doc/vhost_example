@@ -39,6 +39,19 @@ DirectoryIndex index.html
 Include conf/extra/ftpd.conf
 
 
+
+# Work everywhere except in the restricted folder, because we rely on .htaccess
+# in there.
+<LocationMatch "^\/(?!files\/restricted)">
+  AuthType Basic
+  AuthUserFile /home/lwdg/public_html/.htpasswd
+  AuthGroupFile /home/lwdg/public_html/.htgroup
+  AuthName "LWDG File Manager"
+  Require valid-user
+  TrackUploads On
+</LocationMatch>
+
+
 <VirtualHost *:80>
 SuexecUserGroup "#519" "#515"
 ServerName lwdg.port49.com

@@ -45,19 +45,17 @@
     </tr>
   </thead>
   <tbody>
-    <% @directory.directories.each do |directory| -%>
-      <% if directory[:name] == ".." -%>
-        <% unless Directory.is_root? @directory.path -%>
+    <% unless Directory.is_root? @directory.path -%>
     <tr>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td><%= link_to image_tag( "arrow_up.png", :alt => "parent directory" ), directory_path( :id => path_to_id( directory[:location] ) ) %></td>
-      <td class="name"><%= link_to "parent directory", directory_path( :id => path_to_id( directory[:location] ) ) %></td>
+      <td class="name"><%= link_to "parent directory", directory_path( :id => path_to_id( @directory.directories.detect{ |d| d[:name] == ".." }[:location] ) ) %></td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
     </tr>
-        <% end -%>
-      <% elsif directory[:name] != "." -%>
+    <% end -%>
+    <% @directory.directories.reject{ |d| d[:name].match /^\./ }.each do |directory| -%>
     <tr>
       <td>
         <% form_tag directory_path( :id => path_to_id( directory[:location] ) ), :method => 'delete' do -%> 
@@ -76,9 +74,8 @@
       <td>&nbsp;</td>
       <td>&nbsp;</td>
     </tr>
-      <% end -%>
     <% end -%>
-    <% @directory.files.each do |file| -%>
+    <% @directory.files.reject{ |f| f[:name].match /^\./ }.each do |file| -%>
     <tr>
       <td>
         <% form_tag file_path( :id => path_to_id( file[:location] ) ), :method => 'delete', :id => "form_delete_file_#{ file[:name] }" do -%> 
