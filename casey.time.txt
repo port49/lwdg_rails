@@ -45,8 +45,9 @@ TOTAL: 23.75
 [ 11:30, 12:30 ]pm restricted directories
 
 11/6:
-[ 11:30, 12:00 ]pm
-[ 1:15, 3:00 ]pm
+[ 11:30, 12:00 ]pm restricted directories
+[ 1:15, 3:00 ]pm restricted directories
 
 11/7:
-[ 10:45,  ]am 
+[ 11:00, 12:15 ]pm restricted directories vhost config finally found;
+[ 2:45,  ]pm 

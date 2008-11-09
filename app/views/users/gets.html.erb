@@ -2,7 +2,7 @@
   <caption>&gt;&nbsp;<%= link_to "users", users_path %></caption>
   <tbody>
     <tr>
-      <td><%= link_to_function image_tag( 'user_add.png', :alt => "Create a user" ) + '&nbsp;create&nbsp;new&nbsp;user', "$( 'tr#tr_upload' ).toggle()" if admin? %></td>
+      <td><%= link_to_function image_tag( 'user_add.png', :alt => "Create a user" ) + '&nbsp;create&nbsp;new&nbsp;user', "$( 'tr#tr_upload' ).toggle()", :class => 'add' if admin? %></td>
       <td>&nbsp;</td>
     </tr>
   </tbody>
@@ -26,6 +26,7 @@
         <% form_tag user_path, :method => "post" do -%>
           name: <%= text_field_tag 'user[name]', 'username' %>
           password: <%= text_field_tag 'user[password]', 'password' %>
+          restricted client: <%= check_box_tag 'user[restricted]', '1', false %>
           <%= submit_tag "Create User" %>
         <% end -%>
       </td>
