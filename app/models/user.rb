@@ -3,7 +3,6 @@ require 'htauth/passwd'
 class User
   @@file_location = File.join( RAILS_ROOT, '.htpasswd' )
   @@group_location = File.join( RAILS_ROOT, '.htgroup' )
-  @@restricted_location = Directory.restricted
   @@realm = 'LWDG File Manager'
   
   def self.find( arg )
@@ -16,8 +15,8 @@ class User
   
   def self.find_restricted
     @restricted_users = []
-    Dir.foreach( @@restricted_location ) do |entry|
-      location = File.expand_path( File.join( @@restricted_location, entry ) )
+    Dir.foreach( Directory.restricted ) do |entry|
+      location = File.expand_path( File.join( Directory.restricted, entry ) )
       if File.directory?( location ) && !entry.match( /^\./ )
         @restricted_users << entry
       end
@@ -33,8 +32,8 @@ class User
   def self.update_restricted
     @restricted_users = User.find_restricted
     @all_users = User.find( :all ).collect{ |u| u[:name] }
-    Dir.foreach( @@restricted_location ) do |entry|
-      htgroup_path = File.expand_path File.join( @@restricted_location, entry, '.htgroup' )
+    Dir.foreach( Directory.restricted ) do |entry|
+      htgroup_path = File.expand_path File.join( Directory.restricted, entry, '.htgroup' )
       File.open( htgroup, 'w' ) do |f|
         f.write "#{ entry }: #{ entry } #{ @all_users * ' ' }\n"
       end
@@ -53,8 +52,8 @@ class User
     if params[:restricted] && params[:restricted].to_i == 1
       restricted_directory = Directory.new( '/restricted' )
       restricted_directory.create_subdirectory( username )
-      htaccess_path = File.expand_path File.join( @@restricted_location, username, '.htaccess' )
-      htgroup_path = File.expand_path File.join( @@restricted_location, username, '.htgroup' )
+      htaccess_path = File.expand_path File.join( Directory.restricted, username, '.htaccess' )
+      htgroup_path = File.expand_path File.join( Directory.restricted, username, '.htgroup' )
       
       # Write .htaccess file.
       File.open( htaccess_path, 'w' ) do |f|
