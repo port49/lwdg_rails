@@ -27,6 +27,7 @@ class User
   def self.update_group
     @all_users = User.find( :all ).collect{ |u| u[:name] }
     File.open( @@group_location, 'w' ){ |f| f.write( "LoneWolf: #{ @all_users * ' ' }" ) }
+    File.chmod 0664, @@group_location
   end
   
   def self.update_restricted
@@ -34,7 +35,7 @@ class User
     @all_users = User.find( :all ).collect{ |u| u[:name] }
     Dir.foreach( Directory.restricted ) do |entry|
       htgroup_path = File.expand_path File.join( Directory.restricted, entry, '.htgroup' )
-      File.open( htgroup, 'w' ) do |f|
+      File.open( htgroup_path, 'w' ) do |f|
         f.write "#{ entry }: #{ entry } #{ @all_users * ' ' }\n"
       end
       File.chmod 0664, htgroup_path
@@ -64,7 +65,7 @@ class User
         f.write "Require group #{ username }\n"
       end
       File.chmod 0664, htaccess_path
-      File.open( htgroup, 'w' ) do |f|
+      File.open( htgroup_path, 'w' ) do |f|
         f.write "#{ username }: #{ username }\n"
       end
       File.chmod 0664, htgroup_path
