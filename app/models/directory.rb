@@ -39,7 +39,8 @@ class Directory
   end
   
   def remove
-    FileUtils.rm_rf( File.expand_path( @path ) )
+    expanded_path = File.expand_path( @path )
+    FileUtils.rm_rf( expanded_path ) unless ( expanded_path == Directory.root || expanded_path == Directory.restricted )
   end
   
   def parent_path
@@ -48,6 +49,10 @@ class Directory
   
   def self.root
     File.expand_path( File.join( RAILS_ROOT, 'public', STORAGE_PATH ) )
+  end
+  
+  def self.restricted
+    File.expand_path( File.join( RAILS_ROOT, 'public', STORAGE_PATH, 'restricted' ) )
   end
   
   def self.is_root?( path )

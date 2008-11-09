@@ -60,7 +60,7 @@
       <td>
         <% form_tag directory_path( :id => path_to_id( directory[:location] ) ), :method => 'delete' do -%> 
           <%= hidden_field_tag 'file_delete', "" %>
-          <%= link_to_function image_tag( 'folder_delete.png', :alt => "Delete " + directory[:name] ), "Directory.deleteDirectory( this )" %>
+          <%= link_to_function image_tag( 'folder_delete.png', :alt => "Delete " + directory[:name] ), "Directory.deleteDirectory( this )" unless ( directory[:location] == Directory.restricted )%>
         <% end -%>
       </td>
       <td>

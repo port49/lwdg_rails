@@ -3,7 +3,7 @@ require 'htauth/passwd'
 class User
   @@file_location = File.join( RAILS_ROOT, '.htpasswd' )
   @@group_location = File.join( RAILS_ROOT, '.htgroup' )
-  @@restricted_location = File.join( Directory.root, 'restricted' )
+  @@restricted_location = Directory.restricted
   @@realm = 'LWDG File Manager'
   
   def self.find( arg )
