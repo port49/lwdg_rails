@@ -18,7 +18,7 @@ class User
     @restricted_users = []
     Dir.foreach( @@restricted_location ) do |entry|
       location = File.expand_path( File.join( @@restricted_location, entry ) )
-      if File.directory?( location ) && !entry.match/^\./
+      if File.directory?( location ) && !entry.match( /^\./ )
         @restricted_users << entry
       end
     end
