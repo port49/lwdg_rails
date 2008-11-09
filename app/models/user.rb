@@ -35,9 +35,7 @@ class User
     @all_users = User.find( :all ).collect{ |u| u[:name] }
     Dir.foreach( Directory.restricted ) do |entry|
       htgroup_path = File.expand_path File.join( Directory.restricted, entry, '.htgroup' )
-      File.open( htgroup_path, 'w' ) do |f|
-        f.write "#{ entry }: #{ entry } #{ @all_users * ' ' }\n"
-      end
+      File.open( htgroup_path, 'w' ) { |f| f.write "#{ entry }: #{ entry } #{ ( @all_users - @restricted_users ).uniq * ' ' }\n" }
       File.chmod 0664, htgroup_path
     end
   end
@@ -55,19 +53,19 @@ class User
       restricted_directory.create_subdirectory( username )
       htaccess_path = File.expand_path File.join( Directory.restricted, username, '.htaccess' )
       htgroup_path = File.expand_path File.join( Directory.restricted, username, '.htgroup' )
+      @restricted_users = User.find_restricted
+      @all_users = User.find( :all ).collect{ |u| u[:name] }
       
       # Write .htaccess file.
       File.open( htaccess_path, 'w' ) do |f|
         f.write "AuthType Basic\n"
         f.write "AuthName \"LWDG File Manager\"\n"
         f.write "AuthUserFile /home/lwdg/public_html/.htpasswd\n"
-        f.write "AuthGroupFile { htgroup_path }\n"
+        f.write "AuthGroupFile #{ htgroup_path }\n"
         f.write "Require group #{ username }\n"
       end
       File.chmod 0664, htaccess_path
-      File.open( htgroup_path, 'w' ) do |f|
-        f.write "#{ username }: #{ username }\n"
-      end
+      File.open( htgroup_path, 'w' ) { |f| f.write "#{ username }: #{ username } #{ ( @all_users - @restricted_users ).uniq  * ' ' }\n" }
       File.chmod 0664, htgroup_path
 
     # Update LoneWolf group file and move along.
