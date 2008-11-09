@@ -60,14 +60,14 @@
       <td>
         <% form_tag directory_path( :id => path_to_id( directory[:location] ) ), :method => 'delete' do -%> 
           <%= hidden_field_tag 'file_delete', "" %>
-          <%= link_to_function image_tag( 'folder_delete.png', :alt => "Delete " + directory[:name] ), "Directory.deleteDirectory( this )" unless ( directory[:location] == Directory.restricted )%>
-        <% end -%>
+          <%= link_to_function image_tag( 'folder_delete.png', :alt => "Delete " + directory[:name] ), "Directory.deleteDirectory( this )" %>
+        <% end unless ( directory[:location] == Directory.restricted ) -%>
       </td>
       <td>
         <% form_tag directory_path( :id => path_to_id( directory[:location] ) ), :method => 'put' do -%> 
           <%= hidden_field_tag 'directory[name]', directory[:name] %>
           <%= link_to_function image_tag( 'folder_edit.png', :alt => "Rename " + directory[:name] ), "Directory.putDirectory( this )" %>
-        <% end -%>
+        <% end unless ( directory[:location] == Directory.restricted )  -%>
       </td>
       <td><%= link_to image_tag( "folder.png", :alt => directory[:name] ), directory_path( :id => path_to_id( directory[:location] ) ) %></td>
       <td class="name"><%= link_to directory[:name], directory_path( :id => path_to_id( directory[:location] ) ) %></td>

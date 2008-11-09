@@ -61,7 +61,7 @@ class User
         f.write "AuthType Basic\n"
         f.write "AuthName \"LWDG File Manager\"\n"
         f.write "AuthUserFile /home/lwdg/public_html/.htpasswd\n"
-        f.write "AuthGroupFile "{ htgroup_path }\n"
+        f.write "AuthGroupFile { htgroup_path }\n"
         f.write "Require group #{ username }\n"
       end
       File.chmod 0664, htaccess_path
