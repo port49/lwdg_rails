@@ -35,7 +35,7 @@ class Fyle
   end
   
   def make_public_string
-    "<Files \"a_nasa_upload.jpg\">\n  Satisfy Any\n</Files>\n"
+    "<Files \"#{ @name }\">\n  Satisfy Any\n</Files>\n"
   end
 
   def make_public
