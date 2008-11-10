@@ -1,2 +1,4 @@
 The following JSON comes back to the progress bar:
  'state' : 'uploading', 'received' : 369793, 'size' : 1741010, 'speed' : 123264  })
+ 
+ test commit
