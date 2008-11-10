@@ -24,6 +24,29 @@ class Fyle
     File.dirname( @path )
   end
   
+  def htaccess_path
+    File.expand_path( parent_path, '.htacess' )
+  end
+  
+  def is_public?
+    old_htaccess = File.readlines( htaccess_path ) * ''
+    old_htaccess.match( make_public_string )
+  end
+  
+  def make_public_string
+    "<Files \"a_nasa_upload.jpg\">\n  Satisfy Any\n</Files>\n"
+  end
+
+  def make_public
+    File.open( htaccess_path, 'a' ) { |f| f.write make_public_string }
+    File.chmod 0664, htaccess_path
+  end
+  
+  def unmake_public
+    old_htaccess = File.readlines( htaccess_path ) * ''
+    File.open( htaccess_path, 'w' ) { |f| f.write old_htaccess.gsub( make_public_string, '' ) }  if old_htaccess.match( make_public_string )
+  end
+  
   def self.path_to_id( path )
     File.expand_path( path ).sub( File.expand_path( Directory.root ), '' )
   end
