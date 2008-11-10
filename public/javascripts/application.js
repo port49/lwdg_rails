@@ -30,11 +30,19 @@ var Directory = {
 
 var File = {
 
-  putFile: function( anchor ) {
+  putRenameFile: function( anchor ) {
     var i = $( anchor ).prev()[0];
     var p = prompt( "Rename file", i.value );
     if( p ) {
       i.value = p;
+      i.form.submit();
+    }
+  },
+
+  putLinkFile: function( anchor ) {
+    var i = $( anchor ).prev()[0];
+    var c = confirm( "Give this file a publicly available link?" );
+    if( c ) {
       i.form.submit();
     }
   },

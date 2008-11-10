@@ -86,17 +86,16 @@
       <td>
         <% form_tag file_path( :id => path_to_id( file[:location] ) ), :method => 'put' do -%> 
           <%= hidden_field_tag 'file[name]', file[:name] %>
-          <%= link_to_function image_tag( 'page_white_edit.png', :alt => "Rename " + file[:name] ), "File.putFile( this )" %>
+          <%= link_to_function image_tag( 'page_white_edit.png', :alt => "Rename " + file[:name] ), "File.putRenameFile( this )" %>
         <% end -%>
       </td>
       <td>
         <% form_tag file_path( :id => path_to_id( file[:location] ) ), :method => 'put' do -%> 
-          <%= hidden_field_tag 'file[name]', file[:name] %>
-          <%= link_to_function image_tag( 'page_white_link.png', :alt => "Make #{ file[:name] } public" ), "File.putFile( this )" %>
+          <%= hidden_field_tag 'file[public]', 'true' %>
+          <%= link_to_function image_tag( 'page_white_link.png', :alt => "Make #{ file[:name] } public" ), "File.putLinkFile( this )" %>
         <% end -%>
       </td>
-<!--      <td><%= link_to image_tag( "page_white.png", :alt => file[:name] ), download_path( file[:location] ) %></td> -->
-      <td class="name"><%= link_to file[:name], download_path( file[:location] ) %></td>
+      <td class="name"><%= link_to file[:name], download_path( file[:location] ) %><%= "<br />" + download_path( file[:location] ) if file.is_public? %></td>
       <td><%= number_to_human_size( file[:size] ) %></td>
       <td><%= file[:ctime].strftime("%m/%d/%Y %I:%M%p") %></td>
     </tr>
