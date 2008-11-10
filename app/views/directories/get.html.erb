@@ -90,9 +90,13 @@
         <% end -%>
       </td>
       <td>
+        <% if !file[:public] -%>
         <% form_tag file_path( :id => path_to_id( file[:location] ) ), :method => 'put' do -%> 
           <%= hidden_field_tag 'file[public]', 'true' %>
           <%= link_to_function image_tag( 'page_white_link.png', :alt => "Make #{ file[:name] } public" ), "File.putLinkFile( this )" %>
+        <% end -%>
+        <% else -%>
+        <%= link_to image_tag( 'page_white.png' ), download_path( file[:location] ) %>
         <% end -%>
       </td>
       <td class="name"><%= link_to file[:name], download_path( file[:location] ) %><%= "<br />http://#{ @controller.request.host_with_port }/#{ download_path( file[:location] ) }" if file[:public] %></td>
