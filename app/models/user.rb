@@ -99,5 +99,9 @@ class User
   def self.sanitize_username( username )
     username.gsub( /\W+/, '' ).downcase
   end
+  
+  def self.is_restricted?( name )
+    User.find_restricted.include?( name )
+  end
 
 end
