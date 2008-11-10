@@ -46,7 +46,6 @@ class DirectoriesController < RestfulController
         params[:id] = "/restricted/#{ @username }"
       end
     end
-raise params[:id].inspect
     @directory = Directory.new( params[:id] )
   end
 
