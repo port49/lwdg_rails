@@ -31,7 +31,7 @@ class Fyle
   def is_public?
     return false unless File.exists?( htaccess_path )
     old_htaccess = ( File.readlines( htaccess_path ) || [] ) * ''
-    old_htaccess.match( make_public_string )
+    !!old_htaccess.match( make_public_string )
   end
   
   def make_public_string

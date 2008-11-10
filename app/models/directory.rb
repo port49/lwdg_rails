@@ -16,7 +16,7 @@ class Directory
       if File.directory? location 
         @directories << { :name => entry, :location => location }
       elsif File.file? location
-        @files << { :name => entry, :location => location, :size => File.size( location ), :ctime => File.ctime( location ), :public => Fyle.new( location ).is_public? }
+        @files << { :name => entry, :location => location, :size => File.size( location ), :ctime => File.ctime( location ), :public => Fyle.new( "#{ path }/#{ entry }" ).is_public? }
       end
     end
     @directories.sort!{ |a, b| a[:name] <=> b[:name] }
