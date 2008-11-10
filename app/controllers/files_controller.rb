@@ -1,7 +1,7 @@
 class FilesController < RestfulController
 
   def put
-    if params[:file][:public] && params[:file][:public] == 'true' && @file.rename( params[:file][:name] )
+    if params[:file][:public] && params[:file][:public] == 'true' && @file.make_public
       redirect_to directory_path( :id => Directory.path_to_id( @file.parent_path ) )
     elsif !params[:file][:public] && @file.rename( params[:file][:name] )
       redirect_to directory_path( :id => Directory.path_to_id( @file.parent_path ) )
