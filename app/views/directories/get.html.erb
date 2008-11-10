@@ -95,7 +95,7 @@
           <%= link_to_function image_tag( 'page_white_link.png', :alt => "Make #{ file[:name] } public" ), "File.putLinkFile( this )" %>
         <% end -%>
       </td>
-      <td class="name"><%= link_to file[:name], download_path( file[:location] ) %><%= "<br />" + download_path( file[:location] ) if file.is_public? %></td>
+      <td class="name"><%= link_to file[:name], download_path( file[:location] ) %><%= "<br />" + download_path( file[:location] ) if file[:public] %></td>
       <td><%= number_to_human_size( file[:size] ) %></td>
       <td><%= file[:ctime].strftime("%m/%d/%Y %I:%M%p") %></td>
     </tr>

@@ -29,7 +29,7 @@ class Fyle
   end
   
   def is_public?
-    old_htaccess = File.readlines( htaccess_path ) * ''
+    old_htaccess = ( File.readlines( htaccess_path ) || [] ) * ''
     old_htaccess.match( make_public_string )
   end
   
@@ -43,7 +43,7 @@ class Fyle
   end
   
   def unmake_public
-    old_htaccess = File.readlines( htaccess_path ) * ''
+    old_htaccess = ( File.readlines( htaccess_path ) || [] ) * ''
     File.open( htaccess_path, 'w' ) { |f| f.write old_htaccess.gsub( make_public_string, '' ) }  if old_htaccess.match( make_public_string )
   end
   
