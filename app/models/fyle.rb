@@ -25,7 +25,7 @@ class Fyle
   end
   
   def htaccess_path
-    File.expand_path( parent_path, '.htacess' )
+    File.expand_path File.join( parent_path, '.htacess' )
   end
   
   def is_public?
