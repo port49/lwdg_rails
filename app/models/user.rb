@@ -34,9 +34,12 @@ class User
     @restricted_users = User.find_restricted
     @all_users = User.find( :all ).collect{ |u| u[:name] }
     Dir.foreach( Directory.restricted ) do |entry|
-      htgroup_path = File.expand_path File.join( Directory.restricted, entry, '.htgroup' )
-      File.open( htgroup_path, 'w' ) { |f| f.write "#{ entry }: #{ entry } #{ ( @all_users - @restricted_users ).uniq * ' ' }\n" }
-      File.chmod 0664, htgroup_path
+      location = File.expand_path File.join( Directory.restricted, entry )
+      if File.directory?( location ) && !entry.match( /^\./ )
+        htgroup_path = File.expand_path File.join( location, '.htgroup' )
+        File.open( htgroup_path, 'w' ) { |f| f.write "#{ entry }: #{ entry } #{ ( @all_users - @restricted_users ).uniq * ' ' }\n" }
+        File.chmod 0664, htgroup_path
+      end
     end
   end
   
