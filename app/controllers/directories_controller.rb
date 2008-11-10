@@ -41,7 +41,6 @@ class DirectoriesController < RestfulController
   end
 
   def prepare_restful_instance_variables
-raise @username.inspect
     if User.is_restricted? @username
       unless params[:id].match( /^\/restricted\/#{ @username }/ )
         params[:id] = "/restricted/#{ @username }"

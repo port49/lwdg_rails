@@ -1,7 +1,7 @@
 class RestfulController < ApplicationController
+  before_filter :prepare_username
   before_filter :prepare_restful_action
   before_filter :prepare_restful_instance_variables
-  before_filter :prepare_username
 
   helper :all
   session :off  
