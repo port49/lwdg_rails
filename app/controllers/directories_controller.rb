@@ -42,12 +42,11 @@ class DirectoriesController < RestfulController
 
   def prepare_restful_instance_variables
     if User.is_restricted? @username
-      unless params[:id].match( /^\/restricted\/#{ @username }/ )
+      if( params[:id].nil? || !params[:id].match( /^\/restricted\/#{ @username }/ ) )
         params[:id] = "/restricted/#{ @username }"
       end
-    else
-      @directory = Directory.new( params[:id] )
     end
+    @directory = Directory.new( params[:id] )
   end
 
 end
