@@ -25,8 +25,9 @@ class User
   end
   
   def self.update_group
+    @restricted_users = User.find_restricted
     @all_users = User.find( :all ).collect{ |u| u[:name] }
-    File.open( @@group_location, 'w' ){ |f| f.write( "LoneWolf: #{ @all_users * ' ' }" ) }
+    File.open( @@group_location, 'w' ){ |f| f.write( "LoneWolf: #{ ( @all_users - @restricted_users ).uniq * ' ' }" ) }
     File.chmod 0664, @@group_location
   end
   
