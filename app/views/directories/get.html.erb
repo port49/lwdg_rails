@@ -14,7 +14,7 @@
     <tr id="tr_upload" style="display:none">
       <td>&nbsp;</td>
       <td class="files_queue">
-        <% form_tag "#{ UPLOAD_HOST }/upload/post", :id => "upload", :enctype => "multipart/form-data", :method => "post" do -%>
+        <% form_tag "http#{ 's' if @controller.request.ssl? }://#{ @controller.request.host_with_port }/upload/post", :id => "upload", :enctype => "multipart/form-data", :method => "post" do -%>
           <%= hidden_field_tag 'directory[path]', path_to_id( @directory.path ) %>
           <input name="file[0]" type="file" /><button onclick="File.addInput( this );return false;">+</button>
           <div>
