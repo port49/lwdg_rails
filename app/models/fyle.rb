@@ -17,6 +17,7 @@ class Fyle
   end
   
   def remove
+    unmake_public if is_public?
     File.delete File.expand_path( @path )
   end
   
